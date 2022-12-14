@@ -114,7 +114,7 @@ public class AdminRoomsInfo extends JFrame {
         jPanel2.setBackground(new java.awt.Color(216, 181, 224));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Call Records");
+        jLabel1.setText("Room Info");
 
         jButton2.setText("Homepage");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

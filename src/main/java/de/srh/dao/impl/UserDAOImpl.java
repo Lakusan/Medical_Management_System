@@ -254,14 +254,35 @@ public class UserDAOImpl implements DAO<User> {
         return user;
     }
 
-    // setRole to User
-//    public void setUserRole() throws SQLException {
-//        Connection connection = DBManager.getConnection();
-//        User user = null;
-//        String sql = "SELECT user_id, firstname, lastname, email, password, username, phone_num, title FROM users WHERE username = ?";
-//
-//    }
+    public List<User> getNotValidatedUsers() throws SQLException{
+        Connection connection = DBManager.getConnection();
+        List<User> foundUsers = new ArrayList<>();
 
-    // get Role
+        String sql = "SELECT user_id, firstname, lastname, email, username, is_activated FROM users WHERE is_activated = 0";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                int oid = resultSet.getInt("user_id");
+                String firstName = resultSet.getString("firstname");
+                String lastName = resultSet.getString("lastname");
+                String email = resultSet.getString("email");
+                String userName = resultSet.getString("username");
+                int isActivated = resultSet.getInt("is_activated");
+
+                User user = new User(oid, userName, firstName, lastName, email, isActivated);
+
+                foundUsers.add(user);
+            }
+            DBManager.closeResultSet(resultSet);
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+        return foundUsers;
+    }
 
 }

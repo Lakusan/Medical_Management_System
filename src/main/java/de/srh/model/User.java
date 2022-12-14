@@ -16,6 +16,8 @@ public class User {
 
     private String title;
 
+    private int isActivated;
+
     public User( String username, String firstname, String lastname, String email, String password, String phoneNum, String title ) {
         this.username = username;
         this.firstname = firstname;
@@ -36,6 +38,15 @@ public class User {
         this.password = password;
         this.phoneNum = phoneNum;
         this.title = title;
+    }
+
+    public User( int id, String username, String firstname, String lastname, String email, int isActivated) {
+        this.id = id;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.isActivated = isActivated;
     }
 
     public int getId() {
@@ -100,6 +111,14 @@ public class User {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getIsActivated() {
+        return isActivated;
+    }
+
+    public void setIsActivated(int isActivated) {
+        this.isActivated = isActivated;
     }
 
     @Override
