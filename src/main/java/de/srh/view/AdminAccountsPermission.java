@@ -258,54 +258,61 @@ public class AdminAccountsPermission extends JFrame {
     }
 
     /**
+     * gets selected Rows and Columns and extracts Data from it
+     * to activate Users in DB to access the system as admin
+     * as User Object List
      * @author Andreas Lakus
      * @param evt
      */
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-//        this.toBack();
-//        this.setVisible(false);
-//        AdminHome adminHome = new AdminHome();
-//        adminHome.toFront();
-//        adminHome.setVisible(true);
-//        adminHome.setLocationRelativeTo(null);
-//        adminHome.setState(java.awt.Frame.NORMAL);
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt){
+        List<User> foundUsers = getSelectedUsers();
+        try {
+            validateUsers(foundUsers);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountsPermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountsPermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountsPermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountsPermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
                 new AdminAccountsPermission().setVisible(true);
             }
         });
+    }
+
+    /**
+     * gets all selected users from table as list of Users
+     * @author Andreas Lakus
+     * @return List<User>
+     */
+    public List<User> getSelectedUsers(){
+        int[] selectedRows = jTable1.getSelectedRows();
+        List<User> selectedUsers = new ArrayList<>();
+        System.out.println("Button pressed");
+        for ( int i = 0 ; i < selectedRows.length; i++) {
+            int userid =  Integer.parseInt(jTable1.getValueAt(selectedRows[i], 0).toString());
+            String firstname = jTable1.getValueAt(selectedRows[i], 1).toString();
+            String lastname = jTable1.getValueAt(selectedRows[i], 2).toString();
+            String username = jTable1.getValueAt(selectedRows[i], 3).toString();
+            String dateCreated = jTable1.getValueAt(selectedRows[i], 4).toString();
+            String email = jTable1.getValueAt(selectedRows[i], 5).toString();
+            int validated = Integer.parseInt(jTable1.getValueAt(selectedRows[i], 6).toString());
+
+            selectedUsers.add(new User (userid, username, firstname, lastname, email, 1));
+        }
+        System.out.println(selectedUsers.toString());
+        return selectedUsers;
+    }
+    public void validateUsers(List<User> usersToValidate) throws SQLException {
+        UserDAOImpl userDAO = new UserDAOImpl();
+        for (int i = 0; i < usersToValidate.size(); i++){
+            userDAO.validateUsers(usersToValidate.get(i));
+        }
     }
 
     /**

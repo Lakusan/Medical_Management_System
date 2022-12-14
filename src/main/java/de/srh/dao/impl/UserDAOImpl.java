@@ -285,4 +285,19 @@ public class UserDAOImpl implements DAO<User> {
         return foundUsers;
     }
 
+    public void validateUsers(User user) throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        String sql = "UPDATE users set is_activated = 1 WHERE user_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, user.getId());
+        int result = -1;
+        try {
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }
