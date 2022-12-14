@@ -253,4 +253,15 @@ public class UserDAOImpl implements DAO<User> {
         DBManager.closeConnection(connection);
         return user;
     }
+
+    // setRole to User
+//    public void setUserRole() throws SQLException {
+//        Connection connection = DBManager.getConnection();
+//        User user = null;
+//        String sql = "SELECT user_id, firstname, lastname, email, password, username, phone_num, title FROM users WHERE username = ?";
+//
+//    }
+
+    // get Role
+
 }

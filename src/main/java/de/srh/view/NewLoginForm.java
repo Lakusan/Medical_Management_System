@@ -287,7 +287,14 @@ public class NewLoginForm extends JFrame {
             PasswordService passwordService = new PasswordService();
             // TODO (AL) count login failures and deactivate account if limit reached -> reactivate Admin
             if (passwordService.verifyPasswordWithHash(loginUser.getPassword().toString(), password)){
-                javax.swing.JOptionPane.showMessageDialog(this, "Welcome");
+//                javax.swing.JOptionPane.showMessageDialog(this, "Welcome");
+                this.toBack();
+                this.setVisible(false);
+                AdminHome adminHome = new AdminHome();
+                adminHome.toFront();
+                adminHome.setLocationRelativeTo(null);
+                adminHome.setState(java.awt.Frame.NORMAL);
+                adminHome.setVisible(true);
             } else {
                 javax.swing.JOptionPane.showMessageDialog(this, "Password false");
                 return false;
