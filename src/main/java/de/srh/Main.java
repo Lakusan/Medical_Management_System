@@ -1,6 +1,8 @@
 package de.srh;
 
 import de.srh.config.DBManager;
+import de.srh.dao.RoomDAO;
+import de.srh.dao.impl.RoomDAOImpl;
 import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 import de.srh.service.PasswordService;
@@ -78,5 +80,16 @@ public class Main {
 //                .isValid("Andreas.Lksu@something.de");
 //        System.out.println(isvalid);
 //        userDAO.findUserByUserName("")
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            System.out.println(roomDAO.get(1));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            System.out.println(roomDAO.getAll());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -123,7 +123,6 @@ public class UserDAOImpl implements DAO<User> {
             System.err.println(e.getClass().getName()+": "+e.getMessage());
 
         }
-        System.out.println("RESULT: " + result);
 
         DBManager.closePrepStatement(preparedStatement);
         DBManager.closeConnection(connection);
