@@ -34,7 +34,6 @@ public class NewRegistrationForm extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
         jPanel2 = new javax.swing.JPanel();
         Register_heading = new javax.swing.JLabel();
         Title_heading = new javax.swing.JLabel();
@@ -49,9 +48,6 @@ public class NewRegistrationForm extends JFrame {
         Officialemail = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         con = new javax.swing.JTextField();
-        IDforsignup = new javax.swing.JLabel();
-        ID = new javax.swing.JTextField();
-        Full_name_heading2 = new javax.swing.JLabel();
         Password_Heading2 = new javax.swing.JLabel();
         plab = new javax.swing.JPasswordField();
         Repeat_password = new javax.swing.JLabel();
@@ -65,7 +61,6 @@ public class NewRegistrationForm extends JFrame {
         uname1 = new javax.swing.JLabel();
         fname1 = new javax.swing.JLabel();
         con1 = new javax.swing.JLabel();
-        Role = new javax.swing.JLabel();
         id1 = new javax.swing.JLabel();
         AppIcon = new javax.swing.JLabel();
         Appname1 = new javax.swing.JLabel();
@@ -138,23 +133,6 @@ public class NewRegistrationForm extends JFrame {
             }
         });
 
-        IDforsignup.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        IDforsignup.setText("Identification Number:");
-
-        ID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IDActionPerformed(evt);
-            }
-        });
-        ID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                IDKeyReleased(evt);
-            }
-        });
-
-        Full_name_heading2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Full_name_heading2.setText("Login as:(by default)");
-
         Password_Heading2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Password_Heading2.setText("Password:");
 
@@ -226,9 +204,6 @@ public class NewRegistrationForm extends JFrame {
 
         con1.setForeground(new java.awt.Color(255, 0, 51));
 
-        Role.setBackground(new java.awt.Color(255, 255, 255));
-        Role.setBorder(new javax.swing.border.MatteBorder(null));
-
         id1.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -259,8 +234,7 @@ public class NewRegistrationForm extends JFrame {
                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addComponent(Title_heading, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addComponent(Username_heading2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGap(40, 40, 40)
                                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -278,16 +252,13 @@ public class NewRegistrationForm extends JFrame {
                                                                         .addComponent(uname1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                 .addComponent(uname)
                                                                 .addComponent(con)
-                                                                .addComponent(Full_name_heading2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addComponent(Repeat_password, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(plab2)
-                                                                .addComponent(Role, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                                .addComponent(plab2))))
                                         .addComponent(lname, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(plab, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(IDforsignup)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(157, 157, 157)
                                                 .addComponent(id1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -335,14 +306,7 @@ public class NewRegistrationForm extends JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(IDforsignup)
-                                                        .addComponent(Full_name_heading2))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(ID)
-                                                        .addComponent(Role, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGap(57, 57, 57)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(Password_Heading2)
                                                         .addComponent(Repeat_password))
@@ -401,23 +365,10 @@ public class NewRegistrationForm extends JFrame {
         );
 
         pack();
+
     }// </editor-fold>
 
     private void IDActionPerformed(java.awt.event.ActionEvent evt) {
-
-
-        // TODO REMOVE, if not needed
-//        String id_no= ID.getText();
-//        int jml=Integer.parseInt(ID.getText());
-//        if(jml>=1000 && jml<=4999){
-//            Role.setText("Doctor");
-//        }
-//        if(jml>=5000 && jml<=9999){
-//            Role.setText("Nurse");
-//        }
-//        if(jml>=10000 && jml<=14999){
-//            Role.setText("Assistant");
-//        }
     }
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,7 +378,6 @@ public class NewRegistrationForm extends JFrame {
         String u_name= uname.getText();
         String email_id= email.getText();
         String cont= con.getText();
-        String id_no= ID.getText();
         String Pwd=plab.getText();
         String Pwd1=plab2.getText();
         HashMap<String, String> formChecks = new HashMap<String, String>();
@@ -448,7 +398,6 @@ public class NewRegistrationForm extends JFrame {
                 && (u_name.equals(""))
                 && (email_id.equals(""))
                 && (cont.equals(""))
-                && (id_no.equals(""))
                 && (Pwd.equals(""))
                 && (Pwd1.equals(""))) {
             javax.swing.JOptionPane.showMessageDialog(null, "Fields can't be empty");
@@ -460,7 +409,6 @@ public class NewRegistrationForm extends JFrame {
                     && (!u_name.equals(""))
                     && (!email_id.equals(""))
                     && (!cont.equals(""))
-                    && (!id_no.equals(""))
                     && (!Pwd.equals(""))
                     && (!Pwd1.equals("")))
             {
@@ -474,7 +422,6 @@ public class NewRegistrationForm extends JFrame {
                     && (!u_name.equals(""))
                     && (!email_id.equals(""))
                     && (!cont.equals(""))
-                    && (!id_no.equals(""))
                     && (!Pwd.equals(""))
                     && (!Pwd1.equals("")))
             {
@@ -487,7 +434,6 @@ public class NewRegistrationForm extends JFrame {
                     && (!f_name.equals(""))
                     && (!email_id.equals(""))
                     && (!cont.equals(""))
-                    && (!id_no.equals(""))
                     && (!Pwd.equals(""))
                     && (!Pwd1.equals("")))
             {
@@ -501,7 +447,6 @@ public class NewRegistrationForm extends JFrame {
                     && (!l_name.equals(""))
                     && (!u_name.equals(""))
                     && (!cont.equals(""))
-                    && (!id_no.equals(""))
                     && (!Pwd.equals(""))
                     && (!Pwd1.equals("")))
             {
@@ -514,25 +459,11 @@ public class NewRegistrationForm extends JFrame {
                     && (!l_name.equals(""))
                     && (!u_name.equals(""))
                     && (!email_id.equals(""))
-                    && (!id_no.equals(""))
                     && (!Pwd.equals(""))
                     && (!Pwd1.equals("")))
             {
                 javax.swing.JOptionPane.showMessageDialog(null, "Phonenumber can't be empty");
                 formChecks.replace("phoneNumberIsCorrect", "true", "false");
-            }
-
-            if(id_no.equals("")
-                    && (!f_name.equals(""))
-                    && (!l_name.equals(""))
-                    && (!u_name.equals(""))
-                    && (!email_id.equals(""))
-                    && (!cont.equals(""))
-                    && (!Pwd.equals(""))
-                    && (!Pwd1.equals("")))
-            {
-                javax.swing.JOptionPane.showMessageDialog(null, "Identification field can't be empty");
-                formChecks.replace("identificationNumberIsCorrect", "true", "false");
             }
 
 
@@ -542,8 +473,7 @@ public class NewRegistrationForm extends JFrame {
                     && (!u_name.equals(""))
                     && (!email_id.equals(""))
                     && (!cont.equals(""))
-                    && (!Pwd.equals(""))
-                    && (!id_no.equals("")))
+                    && (!Pwd.equals("")))
         {
             javax.swing.JOptionPane.showMessageDialog(null, "Password can't be emtpy");
             formChecks.replace("passwordIsCorrect", "true", "false");
@@ -555,8 +485,7 @@ public class NewRegistrationForm extends JFrame {
                 && (!u_name.equals(""))
                 && (!email_id.equals(""))
                 && (!cont.equals(""))
-                && (!Pwd.equals(""))
-                && (!id_no.equals(""))) {
+                && (!Pwd.equals(""))) {
 
             formChecks.replace("formIsComplete", "false", "true");
             boolean registrationSuccess = false;
@@ -681,6 +610,8 @@ public class NewRegistrationForm extends JFrame {
     }
 
     private void IDKeyReleased(java.awt.event.KeyEvent evt) {
+
+        // TODO remove
         String PATTERN="^[0-9]{0,5}$";
         Pattern patt = Pattern.compile(PATTERN);
         Matcher match = patt.matcher(ID.getText());
@@ -775,14 +706,34 @@ public class NewRegistrationForm extends JFrame {
         return true;
     }
 
+    /**
+     * Username validataion
+     * @author Andreas Lakus
+     * @param username
+     * @return
+     */
     private boolean checkUsername(String username){
         ValidationService validationService = new ValidationService();
         return validationService.checkUsername(username);
     }
+
+    /**
+     * Password validation
+     * @author Andreas Lakus
+     * @param password
+     * @return
+     */
     private boolean checkPassword(String password){
         ValidationService validationService = new ValidationService();
         return validationService.validatePassword(password);
     }
+
+    /**
+     * Ceate new user in DB
+     * @author Andreas Lakus
+     * @param user
+     * @return
+     */
 
     private boolean createNewUser(User user){
         UserDAOImpl userDAO = new UserDAOImpl();
