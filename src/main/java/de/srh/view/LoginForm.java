@@ -1,6 +1,5 @@
 package de.srh.view;
 
-import de.srh.controller.ViewController;
 import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 import de.srh.service.PasswordService;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
  *
  * @author shiva
  */
-public class NewLoginForm extends JFrame {
+public class LoginForm extends JFrame {
 
     private Object JOptionPane;
     private static User loginUser = null;
@@ -20,7 +19,7 @@ public class NewLoginForm extends JFrame {
     /**
      * Creates new form Login_form
      */
-    public NewLoginForm() {
+    public LoginForm() {
         initComponents();
     }
 
@@ -232,10 +231,10 @@ public class NewLoginForm extends JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         this.toBack();
         this.setVisible(false);
-        NewRegistrationForm newRegistrationForm = new NewRegistrationForm();
-        newRegistrationForm.setVisible(true);
-        newRegistrationForm.toFront();
-        newRegistrationForm.setLocationRelativeTo(null);
+        RegistrationForm registrationForm = new RegistrationForm();
+        registrationForm.setVisible(true);
+        registrationForm.toFront();
+        registrationForm.setLocationRelativeTo(null);
 
     }
 
@@ -298,6 +297,13 @@ public class NewLoginForm extends JFrame {
             }
             return true;
         }
+
+    /**
+     * Loads Main Menu by Users Role
+     * @author Andreas Lakus
+     * @param id
+     * @throws SQLException
+     */
     private void loadViewByUserRole(int id) throws SQLException {
         UserDAOImpl userDAO = new UserDAOImpl();
         switch(userDAO.getUserRole(id)){
@@ -331,7 +337,7 @@ public class NewLoginForm extends JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewLoginForm().setVisible(true);
+                new LoginForm().setVisible(true);
             }
         });
     }

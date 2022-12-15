@@ -16,13 +16,13 @@ import javax.swing.*;
  *
  * @author shiva
  */
-public class NewRegistrationForm extends JFrame {
+public class RegistrationForm extends JFrame {
 
-    public static NewRegistrationForm registrationForm = null;
+    public static RegistrationForm registrationForm = null;
     /**
      * Creates new form Registration
      */
-    public NewRegistrationForm() {
+    public RegistrationForm() {
         initComponents();
     }
 
@@ -391,7 +391,7 @@ public class NewRegistrationForm extends JFrame {
         formChecks.put("formIsCorrect", "true");
         formChecks.put("emailIsCorrect", "true");
 
-        NewLoginForm newLoginForm= new NewLoginForm();
+        LoginForm loginForm = new LoginForm();
 
         if((f_name.equals(""))
                 && (l_name.equals(""))
@@ -498,10 +498,10 @@ public class NewRegistrationForm extends JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         this.toBack();
         this.setVisible(false);
-        NewLoginForm newLoginForm= new NewLoginForm();
-        newLoginForm.setVisible(true);
-        newLoginForm.setLocationRelativeTo(null);
-        newLoginForm.toFront();
+        LoginForm loginForm = new LoginForm();
+        loginForm.setVisible(true);
+        loginForm.setLocationRelativeTo(null);
+        loginForm.toFront();
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -695,12 +695,12 @@ public class NewRegistrationForm extends JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Registration Succeeded - You can login now");
             this.toBack();
             this.setVisible(false);
-            NewLoginForm newLoginForm = new NewLoginForm();
-            newLoginForm.toFront();
-            newLoginForm.setVisible(true);
-            newLoginForm.setLocationRelativeTo(null);
-            newLoginForm.setState(java.awt.Frame.NORMAL);
-            newLoginForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            LoginForm loginForm = new LoginForm();
+            loginForm.toFront();
+            loginForm.setVisible(true);
+            loginForm.setLocationRelativeTo(null);
+            loginForm.setState(java.awt.Frame.NORMAL);
+            loginForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         }
         return true;
@@ -751,7 +751,7 @@ public class NewRegistrationForm extends JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        registrationForm = new NewRegistrationForm();
+        registrationForm = new RegistrationForm();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 registrationForm.setVisible(true);

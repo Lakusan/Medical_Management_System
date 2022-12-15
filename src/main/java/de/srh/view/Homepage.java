@@ -15,7 +15,7 @@ public class Homepage extends javax.swing.JFrame {
         initComponents();
     }
 
-    NewLoginForm newLoginForm = new NewLoginForm();
+    LoginForm loginForm = new LoginForm();
 
 
     /**
@@ -173,21 +173,21 @@ public class Homepage extends javax.swing.JFrame {
         this.toBack();
         this.setVisible(false);
         this.setLocationRelativeTo(null);
-        NewRegistrationForm newRegistrationForm=new NewRegistrationForm();
-        newRegistrationForm.setVisible(true);
-        newRegistrationForm.toFront();
-        newRegistrationForm.setLocationRelativeTo(null);
-        newRegistrationForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        RegistrationForm registrationForm =new RegistrationForm();
+        registrationForm.setVisible(true);
+        registrationForm.toFront();
+        registrationForm.setLocationRelativeTo(null);
+        registrationForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         this.toBack();
         this.setVisible(false);
         this.setLocationRelativeTo(null);
-        newLoginForm.setVisible(true);
-        newLoginForm.toFront();
-        newLoginForm.setLocationRelativeTo(null);
-        newLoginForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginForm.setVisible(true);
+        loginForm.toFront();
+        loginForm.setLocationRelativeTo(null);
+        loginForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
