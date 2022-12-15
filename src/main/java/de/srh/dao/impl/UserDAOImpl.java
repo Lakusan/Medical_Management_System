@@ -321,4 +321,76 @@ public class UserDAOImpl implements DAO<User> {
         return roleName;
     }
 
+public List<User> getAllUsersWithRoles() throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        List<User> allUsers = new ArrayList<>();
+
+        String sql = "SELECT users.user_id, users.username, users.lastname, users.firstname, users.email, roles.rolename FROM users INNER JOIN roles ON users.roles_role_id = roles.role_id ORDER BY users.user_id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("user_id");
+                String firstname = resultSet.getString("firstname");
+                String lastname = resultSet.getString("lastname");
+                String email = resultSet.getString("email");
+                String username = resultSet.getString("username");
+                String role = resultSet.getString("rolename");
+                User user = new User( username, id, firstname,  lastname,  email, role );
+                allUsers.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+
+        return allUsers;
+    }
+
+    public void setUserRoles(List<User> users) throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        for (int i = 0 ; i < users.size() ; i++){
+            String sql = "UPDATE users set roles_role_id = ? WHERE user_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            int roleNum = 0;
+            System.out.println(users.get(i).getRole().toString());
+            switch(users.get(i).getRole()){
+                case "admin":
+                    roleNum = 1;
+                    break;
+                case "user":
+                    roleNum = 2;
+                    break;
+                case "doctor":
+                    roleNum = 3;
+                    break;
+                case "nurse":
+                    roleNum = 4;
+                    break;
+                default:
+                    roleNum = 2;
+                    break;
+            }
+            System.out.println("iteration: " + i + " username: " + users.get(i).getUsername() +  " userid: "+ users.get(i).getId() + " role:  " + users.get(i).getRole() + " with num: " + roleNum);
+
+            preparedStatement.setInt(1, roleNum);
+            preparedStatement.setInt(2, users.get(i).getId());
+
+            try{
+                preparedStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLIntegrityConstraintViolationException e){
+                e.printStackTrace();
+                System.err.println(e.getClass().getName()+": "+e.getMessage());
+
+            }
+            DBManager.closePrepStatement(preparedStatement);
+
+        }
+        DBManager.closeConnection(connection);
+    }
+
 }

@@ -18,6 +18,8 @@ public class User {
 
     private int isActivated;
 
+    private String role;
+
     public User( String username, String firstname, String lastname, String email, String password, String phoneNum, String title ) {
         this.username = username;
         this.firstname = firstname;
@@ -47,6 +49,15 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.isActivated = isActivated;
+    }
+
+    public User(String username, int id,  String firstname, String lastname, String email, String role) {
+        this.id = id;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.role = role;
     }
 
     public int getId() {
@@ -83,6 +94,14 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setEmail(String email) {
