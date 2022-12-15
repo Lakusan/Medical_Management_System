@@ -240,12 +240,12 @@ public class AdminRoomsInfo extends JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         System.out.println("button pressed");
-        List<Room> changeRooms = getSelectedRooms();
-        try {
-            changeRooms(changeRooms);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        List<Room> changeRooms = getSelectedRooms();
+//        try {
+//            changeRooms(changeRooms);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     /**

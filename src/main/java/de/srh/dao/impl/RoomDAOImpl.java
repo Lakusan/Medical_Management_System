@@ -65,7 +65,6 @@ public class RoomDAOImpl implements DAO<Room> {
                     isAvailable = false;
                 }
 
-
                 boolean maintanance = false;
                 if (resultSet.getInt("maintanance") == 1){
                     isAvailable = true;
@@ -83,7 +82,6 @@ public class RoomDAOImpl implements DAO<Room> {
         DBManager.closeConnection(connection);
         return room;
     }
-
     @Override
     public List<Room> getAll() throws SQLException {
         Connection connection = DBManager.getConnection();

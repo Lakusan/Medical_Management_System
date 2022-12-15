@@ -299,4 +299,26 @@ public class UserDAOImpl implements DAO<User> {
         }
     }
 
+    public String getUserRole(int id) throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        String sql = "SELECT rolename FROM users INNER JOIN roles ON users.roles_role_id = roles.role_id WHERE users.user_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        String roleName = null;
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                roleName = resultSet.getString("rolename");
+                DBManager.closeResultSet(resultSet);
+            }
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+
+        return roleName;
+    }
+
 }

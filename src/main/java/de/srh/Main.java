@@ -80,16 +80,22 @@ public class Main {
 //                .isValid("Andreas.Lksu@something.de");
 //        System.out.println(isvalid);
 //        userDAO.findUserByUserName("")
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
-        try {
-            System.out.println(roomDAO.get(1));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            System.out.println(roomDAO.getAll());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        RoomDAOImpl roomDAO = new RoomDAOImpl();
+//        try {
+//            System.out.println(roomDAO.get(1));
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        try {
+//            System.out.println(roomDAO.getAll());
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        UserDAOImpl userDAO123 = new UserDAOImpl();
+//        try {
+//            System.out.println(userDAO123.getUserRole(251));
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }

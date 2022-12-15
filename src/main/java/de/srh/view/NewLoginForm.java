@@ -1,5 +1,6 @@
 package de.srh.view;
 
+import de.srh.controller.ViewController;
 import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 import de.srh.service.PasswordService;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 public class NewLoginForm extends JFrame {
 
     private Object JOptionPane;
+    private static User loginUser = null;
 
     /**
      * Creates new form Login_form
@@ -212,7 +214,7 @@ public class NewLoginForm extends JFrame {
         String userName= UsernameField1.getText();
         String PassWord= Pwd.getText();
 
-        //LoginValidation
+        //Input  validation
         //Case1: if both username and password are blank
         if(userName.equals("")&&PassWord.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Please Enter Username and Password");
@@ -225,7 +227,6 @@ public class NewLoginForm extends JFrame {
         }
 
         validateCredentials(userName, PassWord);
-
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +272,6 @@ public class NewLoginForm extends JFrame {
          */
         private boolean validateCredentials(String username, String password){
 
-            User loginUser = null;
             UserDAOImpl userDAO = new UserDAOImpl();
             try {
                 loginUser = userDAO.findUserByUserName(username);
@@ -287,7 +287,24 @@ public class NewLoginForm extends JFrame {
             PasswordService passwordService = new PasswordService();
             // TODO (AL) count login failures and deactivate account if limit reached -> reactivate Admin
             if (passwordService.verifyPasswordWithHash(loginUser.getPassword().toString(), password)){
-//                javax.swing.JOptionPane.showMessageDialog(this, "Welcome");
+                try {
+                    loadViewByUserRole(loginUser.getId());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Password false");
+                return false;
+            }
+            return true;
+        }
+    private void loadViewByUserRole(int id) throws SQLException {
+        UserDAOImpl userDAO = new UserDAOImpl();
+        switch(userDAO.getUserRole(id)){
+            case "user":
+                javax.swing.JOptionPane.showMessageDialog(this, "User");
+                break;
+            case "admin":
                 this.toBack();
                 this.setVisible(false);
                 AdminHome adminHome = new AdminHome();
@@ -295,13 +312,19 @@ public class NewLoginForm extends JFrame {
                 adminHome.setLocationRelativeTo(null);
                 adminHome.setState(java.awt.Frame.NORMAL);
                 adminHome.setVisible(true);
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Password false");
-                return false;
-            }
-            return true;
-        }
+                break;
+            case "nurse":
+                javax.swing.JOptionPane.showMessageDialog(this, "nurse");
+                break;
+            case "doctor":
+                javax.swing.JOptionPane.showMessageDialog(this, "Doctor");
 
+                break;
+            default:
+                javax.swing.JOptionPane.showMessageDialog(this, "Your Account is not yet activated, please contact an Adminiistrator");
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -312,6 +335,7 @@ public class NewLoginForm extends JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;
