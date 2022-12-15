@@ -174,7 +174,7 @@ public class AdminRoomsInfo extends JFrame {
             }
         });
         try {
-            populateTable(columnNames);
+            populateTable();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -239,44 +239,18 @@ public class AdminRoomsInfo extends JFrame {
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println("button pressed");
-//        List<Room> changeRooms = getSelectedRooms();
-//        try {
-//            changeRooms(changeRooms);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        List<Room> changeRooms = getSelectedRooms();
+        try {
+            changeRooms(changeRooms);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminRoomsInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminRoomsInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminRoomsInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminRoomsInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 AdminRoomsInfo adminRoomsInfo = new AdminRoomsInfo();
@@ -320,14 +294,13 @@ public class AdminRoomsInfo extends JFrame {
 
     /**
      * @author Andreas Lakus
-     * @param columnNames
+     * @param
      * @throws SQLException
      */
 //    "Room ID", "Room type", "Room Number", "Bed Count", "responsible Nurse", "bed number", "maintenance", "available"
-    public void populateTable(String [] columnNames) throws SQLException {
+    public void populateTable() throws SQLException {
         RoomDAOImpl roomDAO = new RoomDAOImpl();
-        List<Room> foundRooms = new ArrayList<>();
-        foundRooms = roomDAO.getAll();
+        List<Room> foundRooms = roomDAO.getAll();
         for (int i = 0; i < foundRooms.size(); i++) {
             jTable3.getModel().setValueAt(foundRooms.get(i).getId(), i, 0);
             jTable3.getModel().setValueAt(foundRooms.get(i).getRoomType(), i, 1);
@@ -337,8 +310,8 @@ public class AdminRoomsInfo extends JFrame {
             jTable3.getModel().setValueAt(foundRooms.get(i).getBedNumber(), i, 5);
             jTable3.getModel().setValueAt(foundRooms.get(i).isMaintanance(), i, 6);
             jTable3.getModel().setValueAt(foundRooms.get(i).isAvailable(), i, 7);
-
         }
+        System.out.println(foundRooms.toString());
     }
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;

@@ -115,15 +115,15 @@ public class RoomDAOImpl implements DAO<Room> {
                     isAvailable = false;
                 }
 
-
-                boolean maintanance = false;
+                boolean isMaintanance = false;
                 if (resultSet.getInt("maintanance") == 1){
-                    isAvailable = true;
+                    isMaintanance = true;
                 } else if (resultSet.getInt("maintanance") == 0){
-                    isAvailable = false;
+                    isMaintanance = false;
                 }
 
-                Room room = new Room(rid, roomType,roomNum, bedCount, responsibleNurse, isLocked, bedNumber, isAvailable, maintanance );
+                Room room = new Room(rid, roomType,roomNum, bedCount, responsibleNurse, isLocked, bedNumber, isAvailable, isMaintanance );
+                System.out.println("add room: " + room.toString());
                 rooms.add(room);
             }
         } catch (SQLException e) {
