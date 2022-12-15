@@ -505,6 +505,7 @@ public class AdminHome extends JFrame {
         this.setVisible(false);
         AdminRoomsInfo adminRoomsInfo = new AdminRoomsInfo();
         adminRoomsInfo.toFront();
+        adminRoomsInfo.setSize(1900, 1100);
         adminRoomsInfo.setVisible(true);
         adminRoomsInfo.setLocationRelativeTo(null);
         adminRoomsInfo.setState(java.awt.Frame.NORMAL);

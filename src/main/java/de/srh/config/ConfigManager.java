@@ -46,4 +46,15 @@ public class ConfigManager {
             }
         });
     }
+
+    // store evironment variables hashed in config.properties
+    public void writeConfigParamsHashed(){
+
+    }
+    // reads hashed config params and substitudes the hashed String with decoded Strings
+    public void decodeConfigParams(){
+
+    }
+
+
 }

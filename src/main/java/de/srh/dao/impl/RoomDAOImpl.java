@@ -223,7 +223,7 @@ public class RoomDAOImpl implements DAO<Room> {
             preparedStatement.setInt(8, 0);
         }
 
-            int result = -1;
+        int result = -1;
         try{
             result = preparedStatement.executeUpdate();
             connection.commit();
@@ -254,5 +254,45 @@ public class RoomDAOImpl implements DAO<Room> {
             throw new RuntimeException(e);
         }
         return result;
+    }
+    public int changeRoom(Room room) throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        String sql = "UPDATE rooms set room_type = ?, room_num = ?, bed_count = ?,  responsible_nurse = ?, bed_number = ?, is_available = ?, maintanance = ? WHERE room_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, room.getRoomType());
+        preparedStatement.setInt(2, room.getRoomNumber());
+        preparedStatement.setInt(3, room.getBedCount());
+        preparedStatement.setString(4, room.getResponsibleNurse());
+        preparedStatement.setInt(5, room.getBedNumber());
+        if (room.isAvailable()){
+            preparedStatement.setInt(6, 1);
+        } else if (!room.isAvailable()){
+            preparedStatement.setInt(6, 0);
+        }
+        if (room.isMaintanance()){
+            preparedStatement.setInt(7, 1);
+        } else if (!room.isMaintanance()){
+            preparedStatement.setInt(7, 0);
+        }
+        preparedStatement.setInt(8, room.getId());
+        int result = -1;
+        try{
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+
+        }
+
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+
+        return result;
+
+
     }
 }

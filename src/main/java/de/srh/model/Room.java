@@ -9,7 +9,7 @@ public class Room {
     private boolean isLocked;
     private int bedNumber;
     private boolean isAvailable;
-    private boolean maintanance;
+    private boolean maintenance;
 
     public Room(int id,
                 String roomType,
@@ -28,7 +28,24 @@ public class Room {
         this.isLocked = isLocked;
         this.bedNumber = bedNumber;
         this.isAvailable = isAvailable;
-        this.maintanance = maintanance;
+        this.maintenance = maintanance;
+    }
+    public Room(int id,
+                String roomType,
+                int roomNumber,
+                int bedCount,
+                String responsibleNurse,
+                int bedNumber,
+                boolean isAvailable,
+                boolean maintanance) {
+        this.id = id;
+        this.roomType = roomType;
+        this.roomNumber = roomNumber;
+        this.bedCount = bedCount;
+        this.responsibleNurse = responsibleNurse;
+        this.bedNumber = bedNumber;
+        this.isAvailable = isAvailable;
+        this.maintenance = maintanance;
     }
 
     public Room(String roomType,
@@ -46,7 +63,7 @@ public class Room {
         this.isLocked = isLocked;
         this.bedNumber = bedNumber;
         this.isAvailable = isAvailable;
-        this.maintanance = maintanance;
+        this.maintenance = maintanance;
     }
 
     public int getId() {
@@ -114,11 +131,11 @@ public class Room {
     }
 
     public boolean isMaintanance() {
-        return maintanance;
+        return maintenance;
     }
 
     public void setMaintanance(boolean maintanance) {
-        this.maintanance = maintanance;
+        this.maintenance = maintanance;
     }
 
     @Override
@@ -132,7 +149,7 @@ public class Room {
                 ", isLocked=" + isLocked +
                 ", bedNumber=" + bedNumber +
                 ", isAvailable=" + isAvailable +
-                ", maintanance=" + maintanance +
+                ", maintanance=" + maintenance +
                 '}';
     }
 }

@@ -4,10 +4,8 @@ import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 
 import javax.swing.*;
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
