@@ -283,6 +283,15 @@ public class LoginForm extends JFrame {
                 return false;
             }
 
+            try {
+                if(!userDAO.getUserActivationStatus(loginUser.getId())){
+                    javax.swing.JOptionPane.showMessageDialog(this, "Your Account must be activated by an Admin");
+                    return false;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
             PasswordService passwordService = new PasswordService();
             // TODO (AL) count login failures and deactivate account if limit reached -> reactivate Admin
             if (passwordService.verifyPasswordWithHash(loginUser.getPassword().toString(), password)){
@@ -324,10 +333,9 @@ public class LoginForm extends JFrame {
                 break;
             case "doctor":
                 javax.swing.JOptionPane.showMessageDialog(this, "Doctor");
-
                 break;
             default:
-                javax.swing.JOptionPane.showMessageDialog(this, "Your Account is not yet activated, please contact an Adminiistrator");
+                javax.swing.JOptionPane.showMessageDialog(this, "You dont have a permission role, contact admin");
 
         }
     }

@@ -393,4 +393,33 @@ public List<User> getAllUsersWithRoles() throws SQLException{
         DBManager.closeConnection(connection);
     }
 
+    public boolean getUserActivationStatus(int id) throws SQLException {
+
+        Connection connection = DBManager.getConnection();
+
+        String sql = "SELECT is_activated FROM users WHERE user_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        int isAcivated = 2;
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                isAcivated = resultSet.getInt("is_activated");
+                DBManager.closeResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+
+        if (isAcivated == 0) {
+            return false;
+        } else if (isAcivated == 1){
+            return true;
+
+        }
+        return false;
+    }
 }
