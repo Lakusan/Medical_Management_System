@@ -422,4 +422,45 @@ public List<User> getAllUsersWithRoles() throws SQLException{
         }
         return false;
     }
+    public List<User> getAllManagedUsers() throws SQLException {
+        Connection connection = DBManager.getConnection();
+
+        List<de.srh.model.User> users = new ArrayList<>();
+
+        String sql = "SELECT users.user_id, users.username, users.lastname, users.firstname, users.email, roles.rolename, users.phone_num, is_activated FROM users INNER JOIN roles ON users.roles_role_id = roles.role_id WHERE users.is_activated = 1 ORDER BY users.user_id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("user_id");
+                String username = resultSet.getString("username");
+                String lastname = resultSet.getString("lastname");
+                String firstname = resultSet.getString("firstname");
+                String email = resultSet.getString("email");
+                String role = resultSet.getString("rolename");
+                String phoneNum = resultSet.getString("phone_num");
+                // TODO: add department
+                // TODO: add specialization
+                String department = "Department";
+                String specialization = "Specialization";
+
+                int isActivatedVal = resultSet.getInt("is_activated");
+                boolean isActivated = false;
+                if (isActivatedVal == 1) {
+                    isActivated = true;
+                } else if (isActivatedVal == 0) {
+                    isActivated = false;
+                }
+                int emplid = 1;
+                de.srh.model.User user = new de.srh.model.User( id, emplid,  username,  firstname,  lastname, email , phoneNum, isActivated, role );
+
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+        return users;
+    }
 }

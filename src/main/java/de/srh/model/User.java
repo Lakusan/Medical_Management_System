@@ -18,9 +18,41 @@ public class User {
 
     private int isActivated;
 
+    public boolean isActivated() {
+        return isActivatedBoolean;
+    }
+
+    public void setActivated(boolean activated) {
+        isActivatedBoolean = activated;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    boolean isActivatedBoolean;
+
     private String role;
 
-    public User( String username, String firstname, String lastname, String email, String password, String phoneNum, String title ) {
+    private int employeeId = 0;
+
+    public User(int id, int employeeId, String username, String firstname, String lastname, String email, String phoneNum, boolean isActivatedBoolean, String role) {
+        this.id = id;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNum = phoneNum;
+        this.isActivatedBoolean = isActivatedBoolean;
+        this.role = role;
+        this.employeeId = employeeId;
+    }
+
+    public User(String username, String firstname, String lastname, String email, String password, String phoneNum, String title ) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -96,14 +128,6 @@ public class User {
         return email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -140,6 +164,22 @@ public class User {
         this.isActivated = isActivated;
     }
 
+    public boolean isActivatedBoolean() {
+        return isActivatedBoolean;
+    }
+
+    public void setActivatedBoolean(boolean activatedBoolean) {
+        isActivatedBoolean = activatedBoolean;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -151,6 +191,10 @@ public class User {
                 ", password='" + password + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", title='" + title + '\'' +
+                ", isActivated=" + isActivated +
+                ", isActivatedBoolean=" + isActivatedBoolean +
+                ", role='" + role + '\'' +
+                ", employeeId=" + employeeId +
                 '}';
     }
 }

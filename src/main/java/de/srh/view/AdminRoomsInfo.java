@@ -297,7 +297,6 @@ public class AdminRoomsInfo extends JFrame {
      * @param
      * @throws SQLException
      */
-//    "Room ID", "Room type", "Room Number", "Bed Count", "responsible Nurse", "bed number", "maintenance", "available"
     public void populateTable() throws SQLException {
         RoomDAOImpl roomDAO = new RoomDAOImpl();
         List<Room> foundRooms = roomDAO.getAll();
