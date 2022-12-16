@@ -40,6 +40,7 @@ public class User {
 
     private int employeeId = 0;
 
+
     public User(int id, int employeeId, String username, String firstname, String lastname, String email, String phoneNum, boolean isActivatedBoolean, String role) {
         this.id = id;
         this.username = username;
