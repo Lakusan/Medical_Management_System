@@ -39,6 +39,7 @@ public class UserDAOImpl implements DAO<User> {
                 String phoneNum = resultSet.getString("phone_num");
                 String title = resultSet.getString("title");
                 user = new User(oid, username, firstName, lastName, email, password, phoneNum, title );
+
                 DBManager.closeResultSet(resultSet);
             }
         } catch (SQLException e){
@@ -103,33 +104,83 @@ public class UserDAOImpl implements DAO<User> {
         PasswordService passwordService = new PasswordService();
         String hashedPassword = passwordService.hashPassword(user.getPassword());
 
-        String sql = "INSERT INTO users (firstname, lastname, email, password, username, phone_num, title) VALUES (?,?,?,?,?,?,?)";
+//        String sql = "INSERT INTO users (firstname, lastname, email, password, username, phone_num, title) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT IGNORE INTO country (countryname) VALUE (?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-
-        preparedStatement.setString(1, user.getFirstname());
-        preparedStatement.setString(2, user.getLastname());
-        preparedStatement.setString(3, user.getEmail());
-        preparedStatement.setString(4, hashedPassword);
-        preparedStatement.setString(5, user.getUsername());
-        preparedStatement.setString(6, user.getPhoneNum());
-        preparedStatement.setString(7, user.getTitle());
+        preparedStatement.setString(1, user.getCountry());
         int result = -1;
+
         try{
             result = preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLIntegrityConstraintViolationException e){
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
-
         }
 
+        String sql2 = "INSERT IGNORE INTO city (cityname , city.country_country_id) VALUES (?, (SELECT country_id FROM country  WHERE countryname = ?))";
+        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+        preparedStatement2.setString(1, user.getCity());
+        preparedStatement2.setString(2, user.getCountry());
+        int result2 = -1;
+
+        try{
+            result2 = preparedStatement2.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
+
+
+
+        String sql3 = "INSERT IGNORE INTO address (streetname , postalcode, housenumber, address.city_city_id) VALUES (?, ?, ?, (SELECT city_id FROM city  WHERE cityname = ?));";
+        PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
+        preparedStatement3.setString(1, user.getStreetname());
+        preparedStatement3.setInt(2, user.getPostalcode());
+        preparedStatement3.setInt(3, user.getHouseNum());
+        preparedStatement3.setString(4, user.getCity());
+        int result3 = -1;
+
+        try{
+            result3 = preparedStatement3.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
+
+        String sql4 = "INSERT INTO users (lastname, firstname, username, email , password, phone_num, title, address_address_id, address_city_city_id) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT address_id FROM address WHERE streetname = ? AND postalcode = ? AND housenumber = ? AND address.city_city_id = (SELECT city_id FROM city  WHERE cityname = ?)), (SELECT city_id FROM city  WHERE cityname = ?))";
+        PreparedStatement preparedStatement4 = connection.prepareStatement(sql4);
+        preparedStatement4.setString(1, user.getLastname());
+        preparedStatement4.setString(2, user.getFirstname());
+        preparedStatement4.setString(3, user.getUsername());
+        preparedStatement4.setString(4, user.getEmail());
+        preparedStatement4.setString(5, hashedPassword);
+        preparedStatement4.setString(6, user.getPhoneNum());
+        preparedStatement4.setString(7, user.getTitle());
+        preparedStatement4.setString(8, user.getStreetname());
+        preparedStatement4.setInt(9, user.getPostalcode());
+        preparedStatement4.setInt(10, user.getHouseNum());
+        preparedStatement4.setString(11, user.getCity());
+        preparedStatement4.setString(12, user.getCity());
+        int result4 = -1;
+
+        try{
+            result4 = preparedStatement4.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
         DBManager.closePrepStatement(preparedStatement);
+        DBManager.closePrepStatement(preparedStatement2);
+        DBManager.closePrepStatement(preparedStatement3);
+        DBManager.closePrepStatement(preparedStatement4);
         DBManager.closeConnection(connection);
 
         return result;
     }
-
     // updates entity which exists by key
     @Override
     public int update(User user) throws SQLException{
@@ -164,7 +215,32 @@ public class UserDAOImpl implements DAO<User> {
             System.err.println(e.getClass().getName()+": "+e.getMessage());
 
         }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
 
+        return result;
+    }
+    public int updateManagedUsers(User user) throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        String sql = "UPDATE users set firstname = ?, lastname = ? , phone_num =? WHERE user_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, user.getFirstname());
+        preparedStatement.setString(2, user.getLastname());
+        preparedStatement.setString(3, user.getPhoneNum());
+        preparedStatement.setInt(4, user.getId());
+
+        int result = -1;
+        try{
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+
+        }
         DBManager.closePrepStatement(preparedStatement);
         DBManager.closeConnection(connection);
 

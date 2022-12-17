@@ -248,6 +248,8 @@ public class AdminAccountsValidation extends JFrame {
         List<User> foundUsers = getSelectedUsers();
         try {
             validateUsers(foundUsers);
+            javax.swing.JOptionPane.showMessageDialog(this, "User(s) validated");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

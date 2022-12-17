@@ -40,6 +40,29 @@ public class User {
 
     private int employeeId = 0;
 
+    private String streetname;
+
+    private String city;
+
+    private String country;
+
+    private int postalcode;
+    private int houseNum;
+
+    public User(String username, String firstname, String lastname, String email, String password, String phoneNum, String title, String streetname, String city, String country, int postalcode, int houseNum) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.phoneNum = phoneNum;
+        this.title = title;
+        this.streetname = streetname;
+        this.city = city;
+        this.country = country;
+        this.postalcode = postalcode;
+        this.houseNum = houseNum;
+    }
 
     public User(int id, int employeeId, String username, String firstname, String lastname, String email, String phoneNum, boolean isActivatedBoolean, String role) {
         this.id = id;
@@ -181,6 +204,46 @@ public class User {
         this.role = role;
     }
 
+    public String getStreetname() {
+        return streetname;
+    }
+
+    public void setStreetname(String streetname) {
+        this.streetname = streetname;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(int postalcode) {
+        this.postalcode = postalcode;
+    }
+
+    public int getHouseNum() {
+        return houseNum;
+    }
+
+    public void setHouseNum(int houseNum) {
+        this.houseNum = houseNum;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -196,6 +259,11 @@ public class User {
                 ", isActivatedBoolean=" + isActivatedBoolean +
                 ", role='" + role + '\'' +
                 ", employeeId=" + employeeId +
+                ", streetname='" + streetname + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", postalcode=" + postalcode +
+                ", houseNum=" + houseNum +
                 '}';
     }
 }

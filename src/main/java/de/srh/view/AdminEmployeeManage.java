@@ -1,6 +1,8 @@
 package de.srh.view;
 
+import de.srh.dao.impl.RoomDAOImpl;
 import de.srh.dao.impl.UserDAOImpl;
+import de.srh.model.Room;
 import de.srh.model.User;
 
 import javax.swing.*;
@@ -31,7 +33,6 @@ public class AdminEmployeeManage extends JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -103,10 +104,10 @@ public class AdminEmployeeManage extends JFrame {
                 return types [columnIndex];
             }
             boolean[] canEdit = new boolean [] {
-                    false, true, true, true,
-                    true, true, true, true,
-                    true, true, true, true,
-                    true
+                    false, true, true, false,
+                    false, false, false, true,
+                    false, false, false, false,
+                    false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -142,14 +143,6 @@ public class AdminEmployeeManage extends JFrame {
                                 .addContainerGap())
         );
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Search Here");
 
         jButton1.setText("Delete");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +185,6 @@ public class AdminEmployeeManage extends JFrame {
                                                         .addGap(56, 56, 56)
                                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(30, 30, 30)
                                                         .addComponent(jButton2)
                                                         .addGap(18, 18, 18)
@@ -218,7 +210,6 @@ public class AdminEmployeeManage extends JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jButton2)
                                         .addComponent(jButton1)
                                         .addComponent(jButton3))
@@ -234,50 +225,43 @@ public class AdminEmployeeManage extends JFrame {
         pack();
     }// </editor-fold>
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-
-        String searchTerm = jTextField1.getText().toString();
-        String regexInt = "[0-9]+";
-        String regexString = "[a-zA-Z]+";
-        // if searchTerm is int look for user-ID
-        if (searchTerm.matches(regexInt)) {
-            System.out.println("search by ID");
-            // if searchTerm is string try to find username
-        } else if (searchTerm.matches(regexString)){
-            System.out.println("search by username");
-            // find user by id
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Search for username or user ID");
-        }
-
-    }
-
+    /**
+     * Updates selected Users in DB
+     * @author Andreas Lakus
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Update selected User(s)", "Update Confirmation", dialogButton);
         if(dialogResult == 0) {
-            System.out.println("Yes option");
-            getSelectedUsers();
-            // Update users
-        } else {
-            System.out.println("No Option");
+            try {
+                updateUsers(getSelectedUsers());
+                javax.swing.JOptionPane.showMessageDialog(null, "Users updated");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
+    /**
+     * Deletes selected User from DB
+     * @author Andreas Lakus
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, "Delete selected User(s)", "Delete Confirmation", dialogButton);
         if(dialogResult == 0) {
-            System.out.println("Yes option");
-            getSelectedUsers();
-        } else {
-            System.out.println("No Option");
+            try {
+                deleteUsers(getSelectedUsers());
+                javax.swing.JOptionPane.showMessageDialog(null, "Users deleted");
+                populateTable();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
-        // get selected Rows
-        // ask if admin is shure
-        // then delete user
-        // feedback
+
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,11 +354,47 @@ public class AdminEmployeeManage extends JFrame {
             String street = jTable1.getValueAt(selectedRows[i], 10).toString();
             int houseNo =  Integer.parseInt(jTable1.getValueAt(selectedRows[i], 11).toString());
             String country = jTable1.getValueAt(selectedRows[i], 11).toString();
-            selectedUsers.add(new User ( username, userid, firstname,  lastname,  email, role));
+            selectedUsers.add(new User ( userid, 1, username,  firstname,  lastname,  email,  phoneNum, true, role));
         }
         System.out.println("selected users: " + selectedUsers.toString());
         return selectedUsers;
     }
+
+    /**
+     * Deletes Selected Users
+     * @author Andreas Lakus
+     * @param usersToDelete
+     * @throws SQLException
+     */
+    public void deleteUsers(List<User> usersToDelete) throws SQLException{
+        int[] selectedRows = jTable1.getSelectedRows();
+        UserDAOImpl userDAO = new UserDAOImpl();
+        for (int i = 0 ; i < usersToDelete.size() ; i++){
+            System.out.println(usersToDelete.size());
+
+            int id = Integer.parseInt(jTable1.getValueAt(selectedRows[i], 0).toString());
+            userDAO.delete(userDAO.get(id));
+        }
+    }
+
+    /**
+     * Updates Selected Users
+     * @author Andreas Lakus
+     * @param usersToUpdate
+     * @throws SQLException
+     */
+    public void updateUsers(List<User> usersToUpdate) throws SQLException{
+        int[] selectedRows = jTable1.getSelectedRows();
+        UserDAOImpl userDAO = new UserDAOImpl();
+        System.out.println(usersToUpdate.size());
+        for (int i = 0 ; i < usersToUpdate.size() ; i++){
+            System.out.println("i: " + i);
+            int id = Integer.parseInt(jTable1.getValueAt(selectedRows[i], 0).toString());
+            System.out.println(usersToUpdate.get(i));
+            userDAO.updateManagedUsers(usersToUpdate.get(i));
+        }
+    }
+
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;
     private javax.swing.JLabel Appname1;
@@ -387,6 +407,5 @@ public class AdminEmployeeManage extends JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration
 }

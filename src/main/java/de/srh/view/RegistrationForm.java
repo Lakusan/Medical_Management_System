@@ -492,6 +492,11 @@ public class RegistrationForm extends JFrame {
     private void IDActionPerformed(java.awt.event.ActionEvent evt) {
     }
 
+    /**
+     * gets form data
+     * @author Andreas Lakus
+     * @param evt
+     */
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {
         String title = jComboBox1.getSelectedItem().toString();
         String f_name= fname.getText();
@@ -501,6 +506,12 @@ public class RegistrationForm extends JFrame {
         String cont= con.getText();
         String Pwd=plab.getText();
         String Pwd1=plab2.getText();
+        int postalcode = Integer.parseInt(postalcodeField.getText().toString());
+        String streetname = streetnameField.getText();
+        String city = cityField.getText();
+        String country = countryField.getText();
+        int houseNum = Integer.parseInt(houseNoField.getText().toString());
+
         HashMap<String, String> formChecks = new HashMap<String, String>();
         formChecks.put("formIsComplete", "false");
         formChecks.put("usernameIsCorrect", "true");
@@ -611,7 +622,7 @@ public class RegistrationForm extends JFrame {
             formChecks.replace("formIsComplete", "false", "true");
             boolean registrationSuccess = false;
           if (!formChecks.containsValue("false")) {
-              registrationSuccess = submitRegistration(title, f_name, l_name, u_name, email_id, cont, Pwd1);
+              registrationSuccess = submitRegistration(title, f_name, l_name, u_name, email_id, cont, Pwd1, streetname, country, city,houseNum, postalcode);
           }
         }
     }
@@ -779,7 +790,12 @@ public class RegistrationForm extends JFrame {
                                        String username,
                                        String email,
                                        String phoneNum,
-                                       String password) {
+                                       String password,
+                                       String streetname,
+                                       String country,
+                                       String city,
+                                       int houseNum,
+                                       int postalcode) {
 
         boolean passwordIsValid = checkUsername(username);
         boolean usernameIsValid = checkPassword(password);
@@ -813,11 +829,11 @@ public class RegistrationForm extends JFrame {
                 return false;
             } else {
 //                password = passwordService.hashPassword(password);
-                newUser = new User(username, firstname, lastname, email, password, phoneNum, title);
+                newUser = new User(username,  firstname,  lastname,  email,  password,  phoneNum,  title,  streetname,  city,  country,  postalcode,  houseNum);
             }
         }
         if (createNewUser(newUser)) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Registration Succeeded - You can login now");
+            javax.swing.JOptionPane.showMessageDialog(this, "Registration Succeeded - An Admin will contact you to activate your Account");
             this.toBack();
             this.setVisible(false);
             LoginForm loginForm = new LoginForm();

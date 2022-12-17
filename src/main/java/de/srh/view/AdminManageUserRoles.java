@@ -248,6 +248,7 @@ public class AdminManageUserRoles extends JFrame {
         List<User> foundUsers = getSelectedUsers();
         try {
             submitUsers(foundUsers);
+            javax.swing.JOptionPane.showMessageDialog(null, "User(s) Role changed");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
