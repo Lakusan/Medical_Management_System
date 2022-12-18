@@ -1,5 +1,7 @@
 package de.srh.model;
-
+/**
+ * @author Andreas Lakus
+ */
 public class Room {
     private int id;
     private String roomType;

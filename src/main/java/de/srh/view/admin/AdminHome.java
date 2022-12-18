@@ -1,4 +1,4 @@
-package de.srh.view;
+package de.srh.view.admin;
 
 import javax.swing.*;
 

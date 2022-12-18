@@ -1,9 +1,10 @@
-package de.srh.view;
+package de.srh.view.admin;
 
 import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.List;
  *
  * @author shiva
  */
-public class AdminAccountsValidation extends JFrame {
+public class AdminManageUserRoles extends JFrame {
 
-    public AdminAccountsValidation() {
+    public AdminManageUserRoles() {
         initComponents();
     }
 
@@ -34,7 +35,7 @@ public class AdminAccountsValidation extends JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         String [] columnNames = new String [] {
-                "User Id", "First Name", "Last Name", "User Name", "Date created", "EMail", "Validated"
+                "User Id", "First Name", "Last Name", "User Name", "EMail", "Role"
         };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,7 +53,7 @@ public class AdminAccountsValidation extends JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(1920, 48));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Activate User Accounts");
+        jLabel1.setText("Manage User Roles");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -84,49 +85,49 @@ public class AdminAccountsValidation extends JFrame {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null}
                 },
                 columnNames
         ) {
             Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false
+                    false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -142,9 +143,15 @@ public class AdminAccountsValidation extends JFrame {
         jTable1.setShowHorizontalLines(true);
         jTable1.setShowVerticalLines(true);
         jScrollPane1.setViewportView(jTable1);
-
+        TableColumn testColumn = jTable1.getColumnModel().getColumn(5);
+        JComboBox<String> comboBox = new JComboBox<>();
+        comboBox.addItem("admin");
+        comboBox.addItem("doctor");
+        comboBox.addItem("nurse");
+        comboBox.addItem("user");
+        testColumn.setCellEditor(new DefaultCellEditor(comboBox));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Validate");
+        jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -152,7 +159,7 @@ public class AdminAccountsValidation extends JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Validation Requests:");
+        jLabel2.setText("Users & Roles:");
         try {
             populateTable(columnNames);
         } catch (SQLException e) {
@@ -237,19 +244,11 @@ public class AdminAccountsValidation extends JFrame {
         adminHome.setState(java.awt.Frame.NORMAL);
     }
 
-    /**
-     * gets selected Rows and Columns and extracts Data from it
-     * to activate Users in DB to access the system as admin
-     * as User Object List
-     * @author Andreas Lakus
-     * @param evt
-     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt){
         List<User> foundUsers = getSelectedUsers();
         try {
-            validateUsers(foundUsers);
-            javax.swing.JOptionPane.showMessageDialog(this, "User(s) validated");
-
+            submitUsers(foundUsers);
+            javax.swing.JOptionPane.showMessageDialog(null, "User(s) Role changed");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -262,7 +261,7 @@ public class AdminAccountsValidation extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                new AdminAccountsValidation().setVisible(true);
+                new AdminManageUserRoles().setVisible(true);
             }
         });
     }
@@ -280,20 +279,23 @@ public class AdminAccountsValidation extends JFrame {
             String firstname = jTable1.getValueAt(selectedRows[i], 1).toString();
             String lastname = jTable1.getValueAt(selectedRows[i], 2).toString();
             String username = jTable1.getValueAt(selectedRows[i], 3).toString();
-            String dateCreated = jTable1.getValueAt(selectedRows[i], 4).toString();
-            String email = jTable1.getValueAt(selectedRows[i], 5).toString();
-            int validated = Integer.parseInt(jTable1.getValueAt(selectedRows[i], 6).toString());
-
-            selectedUsers.add(new User (userid, username, firstname, lastname, email, 1));
+            String email = jTable1.getValueAt(selectedRows[i], 4).toString();
+            String role = jTable1.getValueAt(selectedRows[i], 5).toString();;
+            selectedUsers.add(new User ( username, userid, firstname,  lastname,  email, role));
         }
-        System.out.println(selectedUsers.toString());
+        System.out.println("selected users: " + selectedUsers.toString());
         return selectedUsers;
     }
-    public void validateUsers(List<User> usersToValidate) throws SQLException {
+
+    /**
+     * Submits selected Users and changes their role
+     * @author Andreas Lakus
+     * @param //submitUsers
+     * @throws SQLException
+     */
+    public void submitUsers(List<User> users) throws SQLException {
         UserDAOImpl userDAO = new UserDAOImpl();
-        for (int i = 0; i < usersToValidate.size(); i++){
-            userDAO.validateUsers(usersToValidate.get(i));
-        }
+            userDAO.setUserRoles(users);
     }
 
     /**
@@ -303,17 +305,15 @@ public class AdminAccountsValidation extends JFrame {
      */
     public void populateTable(String [] columnNames) throws SQLException {
         UserDAOImpl userDAO = new UserDAOImpl();
-        List<User> foundUsers = new ArrayList<>();
-        foundUsers = userDAO.getNotValidatedUsers();
-        for (int i = 0 ; i < foundUsers.size() ; i++){
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getId(), i, 0);
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getFirstname(), i,1);
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getLastname(), i,2);
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getUsername(), i,3);
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getUsername(), i,4);
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getEmail(), i,5);
-                    jTable1.getModel().setValueAt(foundUsers.get(i).getIsActivated(), i,6);
-            }
+        List<User> allUsers = userDAO.getAllUsersWithRoles();
+        for (int i = 0 ; i < allUsers.size() ; i++){
+            jTable1.getModel().setValueAt(allUsers.get(i).getId(), i, 0);
+            jTable1.getModel().setValueAt(allUsers.get(i).getFirstname(), i,1);
+            jTable1.getModel().setValueAt(allUsers.get(i).getLastname(), i,2);
+            jTable1.getModel().setValueAt(allUsers.get(i).getUsername(), i,3);
+            jTable1.getModel().setValueAt(allUsers.get(i).getEmail(), i,4);
+            jTable1.getModel().setValueAt(allUsers.get(i).getRole(), i,5);
+        }
     }
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;

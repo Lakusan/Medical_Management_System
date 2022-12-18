@@ -1,4 +1,4 @@
-package de.srh.view;
+package de.srh.view.admin;
 
 import de.srh.dao.impl.RoomDAOImpl;
 import de.srh.model.Room;

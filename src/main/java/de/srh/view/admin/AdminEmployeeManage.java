@@ -1,16 +1,12 @@
-package de.srh.view;
+package de.srh.view.admin;
 
-import de.srh.dao.impl.RoomDAOImpl;
 import de.srh.dao.impl.UserDAOImpl;
-import de.srh.model.Room;
 import de.srh.model.User;
 
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *

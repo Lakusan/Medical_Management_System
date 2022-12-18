@@ -3,6 +3,10 @@ package de.srh.view;
 import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 import de.srh.service.PasswordService;
+import de.srh.view.admin.AdminHome;
+import de.srh.view.assistant.UserHome;
+import de.srh.view.doctor.DoctorHome;
+import de.srh.view.nurse.NurseHome;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -317,7 +321,13 @@ public class LoginForm extends JFrame {
         UserDAOImpl userDAO = new UserDAOImpl();
         switch(userDAO.getUserRole(id)){
             case "user":
-                javax.swing.JOptionPane.showMessageDialog(this, "User");
+                this.toBack();
+                this.setVisible(false);
+                UserHome userHome = new UserHome();
+                userHome.toFront();
+                userHome.setLocationRelativeTo(null);
+                userHome.setState(java.awt.Frame.NORMAL);
+                userHome.setVisible(true);
                 break;
             case "admin":
                 this.toBack();
@@ -329,10 +339,22 @@ public class LoginForm extends JFrame {
                 adminHome.setVisible(true);
                 break;
             case "nurse":
-                javax.swing.JOptionPane.showMessageDialog(this, "nurse");
+                this.toBack();
+                this.setVisible(false);
+                NurseHome nurseHome = new NurseHome();
+                nurseHome.toFront();
+                nurseHome.setLocationRelativeTo(null);
+                nurseHome.setState(java.awt.Frame.NORMAL);
+                nurseHome.setVisible(true);
                 break;
             case "doctor":
-                javax.swing.JOptionPane.showMessageDialog(this, "Doctor");
+                this.toBack();
+                this.setVisible(false);
+                DoctorHome doctorHome = new DoctorHome();
+                doctorHome.toFront();
+                doctorHome.setLocationRelativeTo(null);
+                doctorHome.setState(java.awt.Frame.NORMAL);
+                doctorHome.setVisible(true);
                 break;
             default:
                 javax.swing.JOptionPane.showMessageDialog(this, "You dont have a permission role, contact admin");
