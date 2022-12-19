@@ -33,7 +33,9 @@ public class Homepage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
+//        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
+        AppIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/icon.png"));
+        System.out.println(AppIcon.getIcon().toString());
         AppIcon.setText("jLabel4");
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 
@@ -51,7 +53,7 @@ public class Homepage extends javax.swing.JFrame {
         welcome.setPreferredSize(new java.awt.Dimension(367, 40));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\pics.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("src/main/resources/pics.png")); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(920, 296));
 
         Slogan1.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
