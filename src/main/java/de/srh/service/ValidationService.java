@@ -57,9 +57,9 @@ public class ValidationService {
     public boolean checkUsername(String username){
         // 6-8 long, no trailing _ or .
         // _ . inside ok
-        //Allowed Chars a-zA-Z0-9._
+        // Allowed Chars a-zA-Z0-9._
         // no . or _ at the end of username
-        String regex ="^(?=.{6,8}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+        String regex ="^(?=.{6,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
         return isValidString(username, regex);
     }
 }
