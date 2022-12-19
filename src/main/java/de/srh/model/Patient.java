@@ -81,6 +81,20 @@ public class Patient {
         this.email = email;
     }
 
+
+    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, String email) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.phoneNumber = phoneNumber;
+        this.bloodgroup = bloodgroup;
+        this.assignedDoctor = assignedDoctor;
+        this.assignedNurse = assignedNurse;
+        this.currentSymptoms = currentSymptoms;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }

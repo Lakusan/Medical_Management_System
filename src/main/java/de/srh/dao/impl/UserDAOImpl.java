@@ -432,7 +432,6 @@ public List<User> getAllUsersWithRoles() throws SQLException{
             String sql = "UPDATE users set roles_role_id = ? WHERE user_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             int roleNum = 0;
-            System.out.println(users.get(i).getRole().toString());
             switch(users.get(i).getRole()){
                 case "admin":
                     roleNum = 1;
@@ -450,7 +449,6 @@ public List<User> getAllUsersWithRoles() throws SQLException{
                     roleNum = 2;
                     break;
             }
-            System.out.println("iteration: " + i + " username: " + users.get(i).getUsername() +  " userid: "+ users.get(i).getId() + " role:  " + users.get(i).getRole() + " with num: " + roleNum);
 
             preparedStatement.setInt(1, roleNum);
             preparedStatement.setInt(2, users.get(i).getId());

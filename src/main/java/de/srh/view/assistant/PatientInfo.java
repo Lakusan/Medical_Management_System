@@ -1,10 +1,13 @@
 package de.srh.view.assistant;
 
 import de.srh.dao.impl.PatientDAOImpl;
+import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.Patient;
+import de.srh.model.User;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,15 +27,15 @@ public class PatientInfo extends JFrame {
         AppIcon = new javax.swing.JLabel();
         Appname1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
         AppIcon.setText("jLabel4");
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 
@@ -42,28 +45,28 @@ public class PatientInfo extends JFrame {
         Appname1.setText("MediCare Hospital");
         Appname1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jPanel4.setBackground(new java.awt.Color(216, 181, 224));
-        jPanel4.setPreferredSize(new java.awt.Dimension(1920, 48));
+        jPanel1.setBackground(new java.awt.Color(216, 181, 224));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Update Patient's Information");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Payment Records");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(1566, Short.MAX_VALUE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(1528, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                                 .addContainerGap())
         );
+
 
         jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -122,7 +125,7 @@ public class PatientInfo extends JFrame {
         jTable1.setShowGrid(false);
         jTable1.setShowHorizontalLines(true);
         jTable1.setShowVerticalLines(true);
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jButton3.setText("Homepage");
@@ -133,24 +136,37 @@ public class PatientInfo extends JFrame {
             }
         });
 
+        jButton1.setText("submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jSeparator1)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(AppIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(Appname1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(230, 230, 230)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addContainerGap()
-                                                        .addComponent(AppIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(Appname1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addGap(88, 88, 88)
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1407, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButton1)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,13 +179,16 @@ public class PatientInfo extends JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButton3)
+                                        .addComponent(jButton1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(283, Short.MAX_VALUE))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(266, Short.MAX_VALUE))
         );
+
         try {
             populateTable();
         } catch (SQLException e) {
@@ -188,6 +207,52 @@ public class PatientInfo extends JFrame {
         userHome.setState(java.awt.Frame.NORMAL);
     }
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        List<Patient> foundPatients = getSelectedPatients();
+        try {
+            submitPatients(foundPatients);
+            javax.swing.JOptionPane.showMessageDialog(null, "Patient(s) changed");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * gets all selected users from table as list of Users
+     * @author Andreas Lakus
+     * @return List<User>
+     */
+    public List<Patient> getSelectedPatients(){
+        int[] selectedRows = jTable1.getSelectedRows();
+        List<Patient> selectedPatients = new ArrayList<>();
+        for ( int i = 0 ; i < selectedRows.length; i++) {
+
+            String title = jTable1.getValueAt(selectedRows[i], 0).toString();
+            int patientId =  Integer.parseInt(jTable1.getValueAt(selectedRows[i], 1).toString());
+            String firstname = jTable1.getValueAt(selectedRows[i], 2).toString();
+            String lastname = jTable1.getValueAt(selectedRows[i], 3).toString();
+            String currentSymptoms = jTable1.getValueAt(selectedRows[i], 4).toString();
+            String bloodgroup = jTable1.getValueAt(selectedRows[i], 5).toString();
+            String phoneNumber = jTable1.getValueAt(selectedRows[i], 7).toString();
+            String assignedDoctor = jTable1.getValueAt(selectedRows[i], 8).toString();
+            String assignedNurse = jTable1.getValueAt(selectedRows[i], 9).toString();
+            String email = jTable1.getValueAt(selectedRows[i], 10).toString();
+
+            selectedPatients.add(new Patient ( patientId, firstname, lastname, title, phoneNumber, bloodgroup, assignedDoctor, assignedNurse, currentSymptoms, email ));
+        }
+        System.out.println("selected users: " + selectedPatients.toString());
+        return selectedPatients;
+    }
+    /**
+     * Submits selected Users and changes their role
+     * @author Andreas Lakus
+     * @param //submitUsers
+     * @throws SQLException
+     */
+    public void submitPatients(List<Patient> patients) throws SQLException {
+        PatientDAOImpl patientDAO = new PatientDAOImpl();
+        patientDAO.updateListOfPatients(patients);
+    }
     /**
      * @param args the command line arguments
      */
@@ -240,10 +305,11 @@ public class PatientInfo extends JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;
     private javax.swing.JLabel Appname1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     // End of variables declaration

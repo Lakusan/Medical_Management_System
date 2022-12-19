@@ -4,11 +4,10 @@ import de.srh.config.DBManager;
 import de.srh.dao.PatientDAO;
 import de.srh.model.Patient;
 import de.srh.model.User;
+import de.srh.service.PasswordService;
+import de.srh.service.ValidationService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -67,11 +66,65 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public int update(Patient patient) throws SQLException {
-        return 0;
+        Connection connection = DBManager.getConnection();
+
+        String sql = "UPDATE patients set current_symptoms = ?, phonenumber = ?, assigned_doctor = ?, assigned_nurse =? WHERE patients_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, patient.getCurrentSymptoms());
+        preparedStatement.setInt(2, Integer.parseInt(patient.getPhoneNumber()));
+        preparedStatement.setString(3, patient.getAssignedDoctor());
+        preparedStatement.setString(4, patient.getAssignedNurse());
+
+        int result = -1;
+        try{
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+
+        return result;
     }
 
     @Override
     public int delete(Patient patient) throws SQLException {
         return 0;
+    }
+
+    public int updateListOfPatients(List<Patient> patients) throws SQLException{
+
+        Connection connection = DBManager.getConnection();
+        int result = -1;
+
+        String sql = "UPDATE patients set current_symptoms = ?, phonenumber = ?, assigned_doctor = ?, assigned_nurse =? WHERE patients_id = ?";
+        for (int i = 0 ; i < patients.size() ; i++) {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, patients.get(i).getCurrentSymptoms());
+            preparedStatement.setInt(2, Integer.parseInt(patients.get(i).getPhoneNumber()));
+            preparedStatement.setString(3, patients.get(i).getAssignedDoctor());
+            preparedStatement.setString(4, patients.get(i).getAssignedNurse());
+            preparedStatement.setInt(5, patients.get(i).getId());
+
+            try {
+                result = preparedStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLIntegrityConstraintViolationException e) {
+                e.printStackTrace();
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+
+            }
+            if (result != 1){
+                break;
+            }
+            DBManager.closePrepStatement(preparedStatement);
+            DBManager.closeConnection(connection);
+        }
+        return result;
     }
 }

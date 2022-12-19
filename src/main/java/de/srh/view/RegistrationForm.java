@@ -797,8 +797,8 @@ public class RegistrationForm extends JFrame {
                                        int houseNum,
                                        int postalcode) {
 
-        boolean passwordIsValid = checkUsername(username);
-        boolean usernameIsValid = checkPassword(password);
+        boolean passwordIsValid = checkPassword(password);
+        boolean usernameIsValid = checkUsername(username);
 
         if (!usernameIsValid) {
             javax.swing.JOptionPane.showMessageDialog(this, "Username is invalid");
