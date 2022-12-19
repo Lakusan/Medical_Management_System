@@ -8,6 +8,8 @@ import de.srh.service.PasswordService;
 import de.srh.service.ValidationService;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -61,7 +63,89 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public int insert(Patient patient) throws SQLException {
-        return 0;
+        Connection connection = DBManager.getConnection();
+
+        String sql = "INSERT IGNORE INTO country (countryname) VALUE (?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, patient.getCountry());
+        int result = -1;
+
+        try{
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
+
+        String sql2 = "INSERT IGNORE INTO city (cityname , city.country_country_id) VALUES (?, (SELECT country_id FROM country  WHERE countryname = ?))";
+        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+        preparedStatement2.setString(1, patient.getCity());
+        preparedStatement2.setString(2, patient.getCountry());
+        int result2 = -1;
+
+        try{
+            result2 = preparedStatement2.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
+
+
+
+        String sql3 = "INSERT IGNORE INTO address (streetname , postalcode, housenumber, address.city_city_id) VALUES (?, ?, ?, (SELECT city_id FROM city  WHERE cityname = ?));";
+        PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
+        preparedStatement3.setString(1, patient.getStreetname());
+        preparedStatement3.setInt(2, patient.getPostalcode());
+        preparedStatement3.setInt(3, patient.getHouseNo());
+        preparedStatement3.setString(4, patient.getCity());
+        int result3 = -1;
+
+        try{
+            result3 = preparedStatement3.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
+
+        String sql4 = "INSERT INTO patients (lastname, firstname, email, phonenumber, title, bloodgroup, assigned_doctor, assigned_nurse, address_address_id, address_city_city_id, records_records_id, current_symptoms, dob)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?,  (SELECT address_id FROM address WHERE streetname = ? AND postalcode = ? AND housenumber = ? AND address.city_city_id = (SELECT city_id FROM city  WHERE cityname = ?)), (SELECT city_id FROM city  WHERE cityname = ?), 1, ?, ?)";
+        PreparedStatement preparedStatement4 = connection.prepareStatement(sql4);
+        preparedStatement4.setString(1, patient.getLastname());
+        preparedStatement4.setString(2, patient.getFirstname());
+        preparedStatement4.setString(3, patient.getEmail());
+        preparedStatement4.setInt(4, Integer.parseInt(patient.getPhoneNumber()));
+        preparedStatement4.setString(5, patient.getTitle());
+        preparedStatement4.setString(6, patient.getBloodgroup());
+        preparedStatement4.setString(7, patient.getAssignedDoctor());
+        preparedStatement4.setString(8, patient.getAssignedNurse());
+        preparedStatement4.setString(9, patient.getStreetname());
+        preparedStatement4.setInt(10, patient.getPostalcode());
+        preparedStatement4.setInt(11, patient.getHouseNo());
+        preparedStatement4.setString(12, patient.getCity());
+        preparedStatement4.setString(13, patient.getCity());
+        preparedStatement4.setString(14, patient.getCurrentSymptoms());
+        preparedStatement4.setString(15, patient.getDateOfBirth());
+        // TODO add insurance and payment
+
+        int result4 = -1;
+
+        try{
+            result4 = preparedStatement4.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closePrepStatement(preparedStatement2);
+        DBManager.closePrepStatement(preparedStatement3);
+        DBManager.closePrepStatement(preparedStatement4);
+        DBManager.closeConnection(connection);
+
+        return result;
     }
 
     @Override

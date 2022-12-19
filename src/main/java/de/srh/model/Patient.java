@@ -1,4 +1,7 @@
 package de.srh.model;
+
+import java.util.Date;
+
 /**
  * @author Andreas Lakus
  */
@@ -18,6 +21,51 @@ public class Patient {
     String country;
     String dateOfBirth;
     String email;
+    String city;
+    String streetname;
+    int postalcode;
+    int houseNo;
+
+    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email, String city, String streetname, int postalcode, int houseNo) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.phoneNumber = phoneNumber;
+        this.bloodgroup = bloodgroup;
+        this.assignedDoctor = assignedDoctor;
+        this.assignedNurse = assignedNurse;
+        this.currentSymptoms = currentSymptoms;
+        this.insuranceNumber = insuranceNumber;
+        this.insuranceType = insuranceType;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.city = city;
+        this.streetname = streetname;
+        this.postalcode = postalcode;
+        this.houseNo = houseNo;
+    }
+
+    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email, String city, String streetname, int postalcode, int houseNo) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.phoneNumber = phoneNumber;
+        this.bloodgroup = bloodgroup;
+        this.assignedDoctor = assignedDoctor;
+        this.assignedNurse = assignedNurse;
+        this.currentSymptoms = currentSymptoms;
+        this.insuranceNumber = insuranceNumber;
+        this.insuranceType = insuranceType;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.city = city;
+        this.streetname = streetname;
+        this.postalcode = postalcode;
+        this.houseNo = houseNo;
+    }
 
     public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email) {
         this.id = id;
@@ -79,6 +127,24 @@ public class Patient {
         this.country = country;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
+    }
+
+    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, String country, String dateOfBirth, String email, int houseNo, int postalcode, String streetname, String city) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.phoneNumber = phoneNumber;
+        this.bloodgroup = bloodgroup;
+        this.assignedDoctor = assignedDoctor;
+        this.assignedNurse = assignedNurse;
+        this.currentSymptoms = currentSymptoms;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.houseNo = houseNo;
+        this.postalcode = postalcode;
+        this.streetname = streetname;
+        this.city = city;
     }
 
 
@@ -207,6 +273,38 @@ public class Patient {
         this.email = email;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreetname() {
+        return streetname;
+    }
+
+    public void setStreetname(String streetname) {
+        this.streetname = streetname;
+    }
+
+    public int getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(int postalcode) {
+        this.postalcode = postalcode;
+    }
+
+    public int getHouseNo() {
+        return houseNo;
+    }
+
+    public void setHouseNo(int houseNo) {
+        this.houseNo = houseNo;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -224,6 +322,10 @@ public class Patient {
                 ", country='" + country + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                ", streetname='" + streetname + '\'' +
+                ", postalcode=" + postalcode +
+                ", houseNo=" + houseNo +
                 '}';
     }
 }

@@ -1,9 +1,7 @@
-package de.srh.view.assistant;
+package de.srh.view.staff;
 
 import de.srh.dao.impl.PatientDAOImpl;
-import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.Patient;
-import de.srh.model.User;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -200,11 +198,11 @@ public class PatientInfo extends JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         this.toBack();
         this.setVisible(false);
-        UserHome userHome = new UserHome();
-        userHome.toFront();
-        userHome.setVisible(true);
-        userHome.setLocationRelativeTo(null);
-        userHome.setState(java.awt.Frame.NORMAL);
+        StaffHome staffHome = new StaffHome();
+        staffHome.toFront();
+        staffHome.setVisible(true);
+        staffHome.setLocationRelativeTo(null);
+        staffHome.setState(java.awt.Frame.NORMAL);
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {

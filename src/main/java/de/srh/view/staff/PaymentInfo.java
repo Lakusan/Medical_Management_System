@@ -1,4 +1,4 @@
-package de.srh.view.assistant;
+package de.srh.view.staff;
 
 import de.srh.dao.impl.PatientDAOImpl;
 import de.srh.model.Patient;
@@ -191,11 +191,11 @@ public class PaymentInfo extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         this.toBack();
         this.setVisible(false);
-        UserHome userHome = new UserHome();
-        userHome.toFront();
-        userHome.setLocationRelativeTo(null);
-        userHome.setState(java.awt.Frame.NORMAL);
-        userHome.setVisible(true);
+        StaffHome staffHome = new StaffHome();
+        staffHome.toFront();
+        staffHome.setLocationRelativeTo(null);
+        staffHome.setState(java.awt.Frame.NORMAL);
+        staffHome.setVisible(true);
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {

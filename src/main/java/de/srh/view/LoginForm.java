@@ -4,7 +4,7 @@ import de.srh.dao.impl.UserDAOImpl;
 import de.srh.model.User;
 import de.srh.service.PasswordService;
 import de.srh.view.admin.AdminHome;
-import de.srh.view.assistant.UserHome;
+import de.srh.view.staff.StaffHome;
 import de.srh.view.doctor.DoctorHome;
 import de.srh.view.nurse.NurseHome;
 
@@ -323,11 +323,11 @@ public class LoginForm extends JFrame {
             case "user":
                 this.toBack();
                 this.setVisible(false);
-                UserHome userHome = new UserHome();
-                userHome.toFront();
-                userHome.setLocationRelativeTo(null);
-                userHome.setState(java.awt.Frame.NORMAL);
-                userHome.setVisible(true);
+                StaffHome staffHome = new StaffHome();
+                staffHome.toFront();
+                staffHome.setLocationRelativeTo(null);
+                staffHome.setState(java.awt.Frame.NORMAL);
+                staffHome.setVisible(true);
                 break;
             case "admin":
                 this.toBack();
