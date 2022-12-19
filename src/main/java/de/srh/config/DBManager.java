@@ -16,7 +16,7 @@ public class DBManager {
     public DBManager() {
 
     }
-    // TODO: PROD -> System exit (43) should be removed
+    // TODO: PROD -> System exit (44) should be replaced -> Prompt Error to give further information
     public static Connection getConnection() throws SQLException{
         ConfigManager config = new ConfigManager();
         Properties dbConfigProps = ConfigManager.getDBConfigProps();
@@ -27,6 +27,7 @@ public class DBManager {
         String DB_PWD = dbConfigProps.getProperty("DB_PWD").toString();
         String constructedDBURL = "jdbc:mysql://"+DB_URL+":"+DB_PORT+"/"+DB_SCHEME;
         System.out.println("connection is: " + connection);
+
         if (connection == null || connection.isClosed()) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");

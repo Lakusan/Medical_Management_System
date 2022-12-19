@@ -15,7 +15,6 @@ public class AdminHome extends JFrame {
         initComponents();
     }
 
-    AdminEmployeeAdd adminEmployeeAdd = new AdminEmployeeAdd();
     AdminEmployeeManage adminEmployeeManage = new AdminEmployeeManage();
 
     @SuppressWarnings("unchecked")
@@ -222,11 +221,6 @@ public class AdminHome extends JFrame {
         jButton21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton21.setText("Manage");
         jButton21.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
 
 
 
@@ -427,16 +421,12 @@ public class AdminHome extends JFrame {
     }// </editor-fold>
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {
-        this.toBack();
-        this.setVisible(false);
-        AdminPaymentRecords adminPaymentRecords = new AdminPaymentRecords();
-        adminPaymentRecords.toFront();
-        adminPaymentRecords.setVisible(true);
-        adminPaymentRecords.setLocationRelativeTo(null);
-        adminPaymentRecords.setState(java.awt.Frame.NORMAL);
+
     }
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("button 20");
+
         this.toBack();
         this.setVisible(false);
         AdminRoomsInfo adminRoomsInfo = new AdminRoomsInfo();
@@ -448,6 +438,8 @@ public class AdminHome extends JFrame {
     }
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("button 6");
+
         this.toBack();
         this.setVisible(false);
         adminEmployeeManage.toFront();
@@ -456,14 +448,6 @@ public class AdminHome extends JFrame {
         adminEmployeeManage.setState(java.awt.Frame.NORMAL);
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        this.toBack();
-        this.setVisible(false);
-        adminEmployeeAdd.toFront();
-        adminEmployeeAdd.setLocationRelativeTo(null);
-        adminEmployeeAdd.setState(java.awt.Frame.NORMAL);
-        adminEmployeeAdd.setVisible(true);
-    }
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
     }
@@ -472,6 +456,7 @@ public class AdminHome extends JFrame {
     }
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {
+
         AdminAccountsValidation adminAccountsValidation = new AdminAccountsValidation();
         this.toBack();
         this.setVisible(false);
@@ -481,17 +466,10 @@ public class AdminHome extends JFrame {
         adminAccountsValidation.setVisible(true);
     }
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {
-        this.toBack();
-        this.setVisible(false);
-        AdminCallRecords adminCallRecords = new AdminCallRecords();
-        adminCallRecords.toFront();
-        adminCallRecords.setVisible(true);
-        adminCallRecords.setLocationRelativeTo(null);
-        adminCallRecords.setState(java.awt.Frame.NORMAL);
-    }
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("button 15");
+
         AdminManageUserRoles adminManageUserRoles = new AdminManageUserRoles();
         this.toBack();
         this.setVisible(false);
@@ -523,7 +501,7 @@ public class AdminHome extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new Admin_home().setVisible(true);
+                new AdminHome().setVisible(true);
             }
         });
     }

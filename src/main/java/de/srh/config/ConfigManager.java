@@ -1,6 +1,8 @@
 package de.srh.config;
 
 
+import de.srh.service.PasswordService;
+
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -14,6 +16,7 @@ import java.util.Properties;
 public class ConfigManager {
 
     private static Properties dBConfigProps;
+    private static PasswordService passwordService;
 
     private ArrayList<String> configProps = null;
     public static void setDBConfigProps(Properties props){
@@ -39,22 +42,11 @@ public class ConfigManager {
     private void setEnvVariables(){
         dBConfigProps.forEach((key, val) -> {
             try{
-                String newVal = System.getenv(key.toString());
+                String newVal = System.getProperty(key.toString());
                 dBConfigProps.setProperty(key.toString(), newVal.toString());
-            } catch ( NullPointerException e){
+            } catch ( NullPointerException e ){
                 System.out.println(e);
             }
         });
     }
-
-    // store evironment variables hashed in config.properties
-    public void writeConfigParamsHashed(){
-
-    }
-    // reads hashed config params and substitudes the hashed String with decoded Strings
-    public void decodeConfigParams(){
-
-    }
-
-
 }

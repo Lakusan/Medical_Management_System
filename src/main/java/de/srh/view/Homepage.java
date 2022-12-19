@@ -1,6 +1,11 @@
 package de.srh.view;
 
+import de.srh.config.ConfigManager;
+import de.srh.service.PasswordService;
+
+import javax.sound.sampled.Port;
 import javax.swing.*;
+import java.util.Properties;
 
 /**
  *
@@ -35,7 +40,6 @@ public class Homepage extends javax.swing.JFrame {
 
 //        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
         AppIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/icon.png"));
-        System.out.println(AppIcon.getIcon().toString());
         AppIcon.setText("jLabel4");
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 
@@ -196,7 +200,6 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify
     private javax.swing.JLabel Alert;
     private javax.swing.JLabel AppIcon;
