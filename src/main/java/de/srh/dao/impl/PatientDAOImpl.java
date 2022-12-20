@@ -110,8 +110,8 @@ public class PatientDAOImpl implements PatientDAO {
             System.err.println(e.getClass().getName()+": "+e.getMessage());
         }
 
-        String sql4 = "INSERT INTO patients (lastname, firstname, email, phonenumber, title, bloodgroup, assigned_doctor, assigned_nurse, address_address_id, address_city_city_id, records_records_id, current_symptoms, dob)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?,  (SELECT address_id FROM address WHERE streetname = ? AND postalcode = ? AND housenumber = ? AND address.city_city_id = (SELECT city_id FROM city  WHERE cityname = ?)), (SELECT city_id FROM city  WHERE cityname = ?), 1, ?, ?)";
+        String sql4 = "INSERT INTO patients (lastname, firstname, email, phonenumber, title, bloodgroup, assigned_doctor, assigned_nurse, address_address_id, address_city_city_id, records_records_id, current_symptoms, dob, insurance_number, insurance_type, payment_type)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?,  (SELECT address_id FROM address WHERE streetname = ? AND postalcode = ? AND housenumber = ? AND address.city_city_id = (SELECT city_id FROM city  WHERE cityname = ?)), (SELECT city_id FROM city  WHERE cityname = ?), 1, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement4 = connection.prepareStatement(sql4);
         preparedStatement4.setString(1, patient.getLastname());
         preparedStatement4.setString(2, patient.getFirstname());
@@ -121,14 +121,18 @@ public class PatientDAOImpl implements PatientDAO {
         preparedStatement4.setString(6, patient.getBloodgroup());
         preparedStatement4.setString(7, patient.getAssignedDoctor());
         preparedStatement4.setString(8, patient.getAssignedNurse());
+
         preparedStatement4.setString(9, patient.getStreetname());
         preparedStatement4.setInt(10, patient.getPostalcode());
         preparedStatement4.setInt(11, patient.getHouseNo());
         preparedStatement4.setString(12, patient.getCity());
         preparedStatement4.setString(13, patient.getCity());
+
         preparedStatement4.setString(14, patient.getCurrentSymptoms());
         preparedStatement4.setString(15, patient.getDateOfBirth());
-        // TODO add insurance and payment
+        preparedStatement4.setInt(16, patient.getInsuranceNumber());
+        preparedStatement4.setString(17, patient.getInsuranceType());
+        preparedStatement4.setString(18, patient.getPaymentMethod());
 
         int result4 = -1;
 

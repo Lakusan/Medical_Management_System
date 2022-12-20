@@ -26,6 +26,8 @@ public class Patient {
     int postalcode;
     int houseNo;
 
+    String paymentMethod;
+
     public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email, String city, String streetname, int postalcode, int houseNo) {
         this.id = id;
         this.firstname = firstname;
@@ -67,7 +69,8 @@ public class Patient {
         this.houseNo = houseNo;
     }
 
-    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email) {
+    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -84,7 +87,8 @@ public class Patient {
         this.email = email;
     }
 
-    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, String country, String dateOfBirth, String email) {
+    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, String country, String dateOfBirth, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -99,7 +103,8 @@ public class Patient {
         this.email = email;
     }
 
-    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, String dateOfBirth, String email) {
+    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, String dateOfBirth, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -113,7 +118,8 @@ public class Patient {
         this.email = email;
     }
 
-    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email) {
+    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.title = title;
@@ -129,7 +135,9 @@ public class Patient {
         this.email = email;
     }
 
-    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, String country, String dateOfBirth, String email, int houseNo, int postalcode, String streetname, String city) {
+    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, String country, String dateOfBirth, String email, int houseNo,
+                   int postalcode, String streetname, String city) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.title = title;
@@ -147,8 +155,32 @@ public class Patient {
         this.city = city;
     }
 
+    public Patient(String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, String country, String dateOfBirth, String email, int houseNo,
+                   int postalcode, String streetname, String city, int insuranceNumber, String insuranceType, String paymentMethod) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+        this.phoneNumber = phoneNumber;
+        this.bloodgroup = bloodgroup;
+        this.assignedDoctor = assignedDoctor;
+        this.assignedNurse = assignedNurse;
+        this.currentSymptoms = currentSymptoms;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.houseNo = houseNo;
+        this.postalcode = postalcode;
+        this.streetname = streetname;
+        this.city = city;
+        this.insuranceNumber = insuranceNumber;
+        this.insuranceType = insuranceType;
+        this.paymentMethod = paymentMethod;
+    }
 
-    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, String email) {
+
+    public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor,
+                   String assignedNurse, String currentSymptoms, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -305,6 +337,14 @@ public class Patient {
         this.houseNo = houseNo;
     }
 
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -326,6 +366,7 @@ public class Patient {
                 ", streetname='" + streetname + '\'' +
                 ", postalcode=" + postalcode +
                 ", houseNo=" + houseNo +
+                ", paymentMethod='" + paymentMethod + '\'' +
                 '}';
     }
 }
