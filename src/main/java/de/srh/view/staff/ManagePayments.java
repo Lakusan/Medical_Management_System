@@ -1,7 +1,14 @@
 package de.srh.view.staff;
 
+import de.srh.dao.impl.MedicationDAOImpl;
+import de.srh.dao.impl.PatientDAOImpl;
+import de.srh.dao.impl.ProcedureDAOImpl;
+import de.srh.model.Medication;
+import de.srh.model.Patient;
+import de.srh.model.Procedure;
 import de.srh.model.Room;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +59,7 @@ public class ManagePayments extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(216, 181, 224));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Payment Records");
+        jLabel1.setText("Manage Payment");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,14 +114,14 @@ public class ManagePayments extends javax.swing.JFrame {
                         {null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Patient_id", "Firstname", "Lastname", "Appointment_id", "Date", "Time", "Symptoms"
+                        "Patient_id", "Firstname", "Lastname", "Appoointment_id", "Date", "Time", "Symptoms"
                 }
         ) {
             Class[] types = new Class [] {
                     java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false
+                    false, false, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -151,46 +158,46 @@ public class ManagePayments extends javax.swing.JFrame {
         jTable4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
                 },
                 new String [] {
-                        "Medication_id", "Medication_Name", "Price"
+                        "Medication_id", "Medication_Name", "Price", "selected"
                 }
         ) {
             Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+                    java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, false, false
+                    false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -207,6 +214,7 @@ public class ManagePayments extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable4);
         jTable4.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
+        sumTextField.setText("jTextField1");
         sumTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sumTextFieldActionPerformed(evt);
@@ -219,46 +227,46 @@ public class ManagePayments extends javax.swing.JFrame {
         jTable5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
                 },
                 new String [] {
-                        "Procedure_id", "Procedure_name", "Price"
+                        "Procedure_id", "Procedure_name", "Price", "selected"
                 }
         ) {
             Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+                    java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, false, false
+                    false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -367,6 +375,14 @@ public class ManagePayments extends javax.swing.JFrame {
                                         .addGap(433, 433, 433)))
         );
 
+        try {
+            populateMedication();
+            populateProcedure();
+            populatePatient();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         pack();
     }// </editor-fold>
 
@@ -424,24 +440,47 @@ public class ManagePayments extends javax.swing.JFrame {
      * poulates table
      * @author Andreas Lakus
      */
-    private void populateMedication(){
-        // Medication id , Medication name, price
+    private void populateMedication() throws SQLException {
+        MedicationDAOImpl medicationDAO = new MedicationDAOImpl();
+        List<Medication> foundMedications = medicationDAO.getAll();
+        for (int i = 0; i > foundMedications.size(); i++){
+            jTable3.getModel().setValueAt(foundMedications.get(i).getMedicationId(), i, 0);
+            jTable3.getModel().setValueAt(foundMedications.get(i).getMedicationName(), i, 1);
+            jTable3.getModel().setValueAt(foundMedications.get(i).getPrice(), i, 2);
+        }
     }
 
     /**
      * poulates table
      * @author Andreas Lakus
      */
-    private void populateProcedure(){
-        // Procedure Id, procedure name, price
+    private void populateProcedure() throws SQLException{
+        ProcedureDAOImpl procedureDAO = new ProcedureDAOImpl();
+        List<Procedure> foundProcedures = procedureDAO.getAll();
+        for (int i = 0; i > foundProcedures.size(); i++){
+            jTable3.getModel().setValueAt(foundProcedures.get(i).getProcedureId(), i, 0);
+            jTable3.getModel().setValueAt(foundProcedures.get(i).getProcedureName(), i, 1);
+            jTable3.getModel().setValueAt(foundProcedures.get(i).getPrice(), i, 2);
+        }
     }
 
     /**
      * poulates table
      * @author Andreas Lakus
      */
-    private void populatePatient(){
+    private void populatePatient() throws SQLException{
 // patient id, firstname, lastname, appointmentid, date, time symptoms
+        PatientDAOImpl patientDAO = new PatientDAOImpl();
+        List<Patient> foundPatients = patientDAO.getAllAppointmentsWithPatientInfos();
+        for (int i = 0; i > foundPatients.size(); i++){
+            jTable3.getModel().setValueAt(foundPatients.get(i).getId(), i, 0);
+            jTable3.getModel().setValueAt(foundPatients.get(i).getFirstname(), i, 1);
+            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
+//            jTable3.getModel().setValueAt(foundPatients.get(i).(), i, 2);
+            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
+            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
+            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
+        }
     }
 
     /**
@@ -459,21 +498,24 @@ public class ManagePayments extends javax.swing.JFrame {
         return sum;
     }
 
-    public List<Room> getSelectedRooms(){
-        int[] selectedRows = jTable3.getSelectedRows();
-        List<Room> selectedRooms = new ArrayList<>();
-        for ( int i = 0 ; i < selectedRows.length; i++) {
-            int roomID =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 0).toString());
-            String roomType  =  jTable3.getValueAt(selectedRows[i], 1).toString();
-            int roomNum=  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 2).toString());
-            int bedCount =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 3).toString());
-            String responsibleNurse =  jTable3.getValueAt(selectedRows[i], 4).toString();
-            int bedNumber =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 5).toString());
-            Boolean maintenance =  Boolean.parseBoolean(jTable3.getValueAt(selectedRows[i], 6).toString());
-            Boolean isAvailable =  Boolean.parseBoolean(jTable3.getValueAt(selectedRows[i], 7).toString());
-            selectedRooms.add(new Room (roomID, roomType, roomNum, bedCount, responsibleNurse, bedNumber, isAvailable, maintenance));
+    public void getSelectedMedications(){
+        List<Medication> selectedMedications = new ArrayList<>();
+        int getRowsCount = jTable3.getRowCount();
+        for ( int i = 0 ; i < getRowsCount; i++) {
+            if (jTable3.getValueAt(i, 4).equals("true")){
+                System.out.println("row: " + i + " is true");
+            }
+//            int roomID =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 0).toString());
+//            String roomType  =  jTable3.getValueAt(selectedRows[i], 1).toString();
+//            int roomNum=  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 2).toString());
+//            int bedCount =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 3).toString());
+//            String responsibleNurse =  jTable3.getValueAt(selectedRows[i], 4).toString();
+//            int bedNumber =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 5).toString());
+//            Boolean maintenance =  Boolean.parseBoolean(jTable3.getValueAt(selectedRows[i], 6).toString());
+//            Boolean isAvailable =  Boolean.parseBoolean(jTable3.getValueAt(selectedRows[i], 7).toString());
+//            selectedRooms.add(new Room (roomID, roomType, roomNum, bedCount, responsibleNurse, bedNumber, isAvailable, maintenance));
         }
-        return selectedRooms;
+//        return selectedRooms;
     }
 
 

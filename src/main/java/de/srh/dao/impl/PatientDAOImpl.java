@@ -215,4 +215,37 @@ public class PatientDAOImpl implements PatientDAO {
         }
         return result;
     }
+    
+    public List<Patient> getAllAppointmentsWithPatientInfos() throws SQLException{
+
+        Connection connection = DBManager.getConnection();
+
+        List<Patient> patients = new ArrayList<>();
+
+        String sql = "SELECT * FROM railway.patients INNER JOIN appointment ON appointment_appointment_id = appointment_id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("patients_id");
+                String firstname = resultSet.getString("firstname");
+                String lastname = resultSet.getString("lastname");
+                String currentSymptoms = resultSet.getString("current_symptoms");
+                int appointmentId = resultSet.getInt("appointment_id");
+                String appointmentDate = resultSet.getString("date");
+                String appointmentTime = resultSet.getString("time");
+
+//                Patient patient = new Patient( id,  firstname,  lastname,  title,  phoneNumber,  bloodgroup,  assignedDoctor,  assignedNurse,  currentSymptoms,  dateOfBirth,  email);
+
+//                patients.add(patient);
+
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+        return patients;
+    }
 }
