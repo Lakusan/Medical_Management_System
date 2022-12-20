@@ -46,7 +46,7 @@ public class PatientInfo extends JFrame {
         jPanel1.setBackground(new java.awt.Color(216, 181, 224));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Payment Records");
+        jLabel1.setText("Patients");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
