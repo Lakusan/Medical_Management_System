@@ -1,12 +1,9 @@
 package de.srh.view.staff;
 
+import de.srh.dao.impl.AppointmentDAOImpl;
 import de.srh.dao.impl.MedicationDAOImpl;
-import de.srh.dao.impl.PatientDAOImpl;
 import de.srh.dao.impl.ProcedureDAOImpl;
-import de.srh.model.Medication;
-import de.srh.model.Patient;
-import de.srh.model.Procedure;
-import de.srh.model.Room;
+import de.srh.model.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,9 +15,8 @@ import java.util.List;
  */
 public class ManagePayments extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Staff_payinfo
-     */
+    public static String billSum = "";
+
     public ManagePayments() {
         initComponents();
     }
@@ -82,46 +78,46 @@ public class ManagePayments extends javax.swing.JFrame {
         jTable3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Patient_id", "Firstname", "Lastname", "Appoointment_id", "Date", "Time", "Symptoms"
+                        "Patient_id", "Firstname", "Lastname", "Appointment_id", "Date", "Time", "Symptoms", "active_Bill"
                 }
         ) {
             Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                    false, false, false, true, true, true, true
+                    false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -158,36 +154,36 @@ public class ManagePayments extends javax.swing.JFrame {
         jTable4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false}
                 },
                 new String [] {
                         "Medication_id", "Medication_Name", "Price", "selected"
@@ -214,7 +210,6 @@ public class ManagePayments extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable4);
         jTable4.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        sumTextField.setText("jTextField1");
         sumTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sumTextFieldActionPerformed(evt);
@@ -227,36 +222,36 @@ public class ManagePayments extends javax.swing.JFrame {
         jTable5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false},
+                        {null, null, null, false}
                 },
                 new String [] {
                         "Procedure_id", "Procedure_name", "Price", "selected"
@@ -397,13 +392,39 @@ public class ManagePayments extends javax.swing.JFrame {
     }
 
     private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
+        List<Medication> selectedMedications = getSelectedMedications();
+        List<Procedure> selectedProcedures = getSelectedProcedures();
+        List<Float> allPrices = new ArrayList<>();
+        if (selectedMedications == null || selectedProcedures == null){
+            javax.swing.JOptionPane.showMessageDialog(this, "No Prices selected - Pleas select Objects");
+        } else {
+            for ( int i = 0; i < selectedMedications.size(); i++){
+                if (selectedMedications.size() > 0){
+                    allPrices.add(selectedMedications.get(i).getPrice());
+                }
+            }
+            for ( int j = 0; j < selectedProcedures.size(); j++){
+                if (selectedProcedures.size() > 0) {
+                    allPrices.add(selectedProcedures.get(j).getPrice());
+                }
+            }
+        }
+        sumTextField.setText(calcSum(allPrices));
     }
+
 
     private void sumTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
     }
 
     private void calculateButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        Appointment appointment = getSelectedPatientsAppointment();
+        try {
+            addBillToPatientsAppointment(appointment);
+            javax.swing.JOptionPane.showMessageDialog(this, "Bill added to Appointment");
+            populatePatient();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -443,10 +464,10 @@ public class ManagePayments extends javax.swing.JFrame {
     private void populateMedication() throws SQLException {
         MedicationDAOImpl medicationDAO = new MedicationDAOImpl();
         List<Medication> foundMedications = medicationDAO.getAll();
-        for (int i = 0; i > foundMedications.size(); i++){
-            jTable3.getModel().setValueAt(foundMedications.get(i).getMedicationId(), i, 0);
-            jTable3.getModel().setValueAt(foundMedications.get(i).getMedicationName(), i, 1);
-            jTable3.getModel().setValueAt(foundMedications.get(i).getPrice(), i, 2);
+        for (int i = 0; i < foundMedications.size(); i++){
+            jTable4.getModel().setValueAt(foundMedications.get(i).getMedicationId(), i, 0);
+            jTable4.getModel().setValueAt(foundMedications.get(i).getMedicationName(), i, 1);
+            jTable4.getModel().setValueAt(foundMedications.get(i).getPrice(), i, 2);
         }
     }
 
@@ -457,10 +478,10 @@ public class ManagePayments extends javax.swing.JFrame {
     private void populateProcedure() throws SQLException{
         ProcedureDAOImpl procedureDAO = new ProcedureDAOImpl();
         List<Procedure> foundProcedures = procedureDAO.getAll();
-        for (int i = 0; i > foundProcedures.size(); i++){
-            jTable3.getModel().setValueAt(foundProcedures.get(i).getProcedureId(), i, 0);
-            jTable3.getModel().setValueAt(foundProcedures.get(i).getProcedureName(), i, 1);
-            jTable3.getModel().setValueAt(foundProcedures.get(i).getPrice(), i, 2);
+        for (int i = 0; i < foundProcedures.size(); i++){
+            jTable5.getModel().setValueAt(foundProcedures.get(i).getProcedureId(), i, 0);
+            jTable5.getModel().setValueAt(foundProcedures.get(i).getProcedureName(), i, 1);
+            jTable5.getModel().setValueAt(foundProcedures.get(i).getPrice(), i, 2);
         }
     }
 
@@ -469,17 +490,17 @@ public class ManagePayments extends javax.swing.JFrame {
      * @author Andreas Lakus
      */
     private void populatePatient() throws SQLException{
-// patient id, firstname, lastname, appointmentid, date, time symptoms
-        PatientDAOImpl patientDAO = new PatientDAOImpl();
-        List<Patient> foundPatients = patientDAO.getAllAppointmentsWithPatientInfos();
-        for (int i = 0; i > foundPatients.size(); i++){
-            jTable3.getModel().setValueAt(foundPatients.get(i).getId(), i, 0);
-            jTable3.getModel().setValueAt(foundPatients.get(i).getFirstname(), i, 1);
-            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
-//            jTable3.getModel().setValueAt(foundPatients.get(i).(), i, 2);
-            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
-            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
-            jTable3.getModel().setValueAt(foundPatients.get(i).getLastname(), i, 2);
+        AppointmentDAOImpl appointmentDAOImpl = new AppointmentDAOImpl();
+        List<Appointment> foundAppointments = appointmentDAOImpl.getAllAppointmentsWithPatientInfos();
+        for (int i = 0; i < foundAppointments.size(); i++){
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getPatientID(), i, 0);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getFirstname(), i, 1);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getLastname(), i, 2);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getAppointmentID(), i, 3);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getDate(), i, 4);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getTime(), i, 5);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getDiagnosis(), i, 6);
+            jTable3.getModel().setValueAt(foundAppointments.get(i).getPrice(), i, 7);
         }
     }
 
@@ -489,38 +510,87 @@ public class ManagePayments extends javax.swing.JFrame {
      * @param prices
      * @return
      */
-    private float calcSum(float[] prices){
+    private String calcSum(List<Float> prices){
+        System.out.println("prices size" + prices.size());
         float sum = 0;
-        for (int i = 0; i < prices.length; i++){
-            sum += prices[i];
+        for (int i = 0; i < prices.size(); i++){
+            System.out.println("price: " + prices.get(i));
+            sum += prices.get(i);
+            System.out.println("sum: " + sum);
         }
-//        sumTextField.setText(Float.toString(sum));
-        return sum;
+
+        String rounded = String.format("%.2f", sum);
+
+        billSum = rounded;
+        return rounded;
     }
 
-    public void getSelectedMedications(){
+    /**
+     *
+     * @author Andreas Lakus
+     * @return
+     */
+    public List<Medication> getSelectedMedications() throws NullPointerException{
         List<Medication> selectedMedications = new ArrayList<>();
-        int getRowsCount = jTable3.getRowCount();
-        for ( int i = 0 ; i < getRowsCount; i++) {
-            if (jTable3.getValueAt(i, 4).equals("true")){
-                System.out.println("row: " + i + " is true");
+        int getRows = jTable4.getRowCount();
+        System.out.println(getRows);
+        for ( int i = 0 ; i < getRows; i++) {
+            if (jTable4.getValueAt(i, 3).equals(true)){
+                int medicationID = Integer.parseInt(jTable4.getValueAt(i, 0).toString());
+                String medicationName  =  jTable4.getValueAt(i, 1).toString();
+                float price  = Float.parseFloat(jTable4.getValueAt(i, 2).toString());
+
+                Medication medication = new Medication(medicationID, medicationName, price);
+
+                selectedMedications.add(medication);
             }
-//            int roomID =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 0).toString());
-//            String roomType  =  jTable3.getValueAt(selectedRows[i], 1).toString();
-//            int roomNum=  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 2).toString());
-//            int bedCount =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 3).toString());
-//            String responsibleNurse =  jTable3.getValueAt(selectedRows[i], 4).toString();
-//            int bedNumber =  Integer.parseInt(jTable3.getValueAt(selectedRows[i], 5).toString());
-//            Boolean maintenance =  Boolean.parseBoolean(jTable3.getValueAt(selectedRows[i], 6).toString());
-//            Boolean isAvailable =  Boolean.parseBoolean(jTable3.getValueAt(selectedRows[i], 7).toString());
-//            selectedRooms.add(new Room (roomID, roomType, roomNum, bedCount, responsibleNurse, bedNumber, isAvailable, maintenance));
         }
-//        return selectedRooms;
+        return selectedMedications;
     }
 
+    /**
+     * @author Andreas Lakus
+     * @return
+     */
+    public List<Procedure> getSelectedProcedures()throws NullPointerException{
+        List<Procedure> selectedProcedures = new ArrayList<>();
+        int getRows = jTable5.getRowCount();
+        for ( int i = 0 ; i < getRows; i++) {
+            if (jTable5.getValueAt(i, 3).equals(true)){
+                int procedureID = Integer.parseInt(jTable5.getValueAt(i, 0).toString());
+                String procedureName  =  jTable5.getValueAt(i, 1).toString();
+                float price  = Float.parseFloat(jTable5.getValueAt(i, 2).toString());
 
+                Procedure procedure = new Procedure(procedureID, procedureName, price);
 
+                selectedProcedures.add(procedure);
+            }
+        }
+        return selectedProcedures;
+    }
 
+    /**
+     * @author Andreas Lakus
+     * @return
+     */
+    public Appointment getSelectedPatientsAppointment()throws NullPointerException{
+        int getSelectedRow = jTable3.getSelectedRow();
+        int patientID = Integer.parseInt(jTable3.getValueAt(getSelectedRow,0).toString());
+        int appointmentID = Integer.parseInt(jTable3.getValueAt(getSelectedRow,3).toString());
+        String activeBillSum = billSum;
+
+        Appointment appointment = new Appointment(appointmentID, activeBillSum);
+
+        return appointment;
+    }
+    /**
+     * @author Andreas Lakus
+     * @return
+     */
+    void addBillToPatientsAppointment(Appointment appointment) throws SQLException{
+        AppointmentDAOImpl appointmentDAO = new AppointmentDAOImpl();
+        appointmentDAO.updatePrice(appointment);
+    }
 
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;

@@ -8,23 +8,56 @@ public class Appointment {
     int treatmentId;
 
     String diagnosis;
-    int userId;
+    int patientID;
 
-    public Appointment(int appointmentID, String date, String time, int treatmentId, String diagnosis, int userId) {
+    String firstname;
+    String lastname;
+
+    float activeBillSum;
+
+    String price;
+    public Appointment(String date, String time, int treatmentId, String diagnosis, int patientID, String firstname, String lastname) {
+        this.date = date;
+        this.time = time;
+        this.treatmentId = treatmentId;
+        this.diagnosis = diagnosis;
+        this.patientID = patientID;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    public Appointment(int appointmentID, String date, String time, int treatmentId, String diagnosis, int patientID, String firstname, String lastname) {
         this.appointmentID = appointmentID;
         this.date = date;
         this.time = time;
         this.treatmentId = treatmentId;
         this.diagnosis = diagnosis;
-        this.userId = userId;
+        this.patientID = patientID;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
-    public Appointment(String date, String time, int treatmentId, String diagnosis, int userId) {
+    public Appointment(int appointmentID, String date, String time, int treatmentId, String diagnosis, int patientID, String firstname, String lastname, String price) {
+        this.appointmentID = appointmentID;
         this.date = date;
         this.time = time;
         this.treatmentId = treatmentId;
         this.diagnosis = diagnosis;
-        this.userId = userId;
+        this.patientID = patientID;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.price = price;
+    }
+
+    public Appointment(int appointmentID, int patientID, float activeBillSum){
+        this.appointmentID = appointmentID;
+        this.patientID = patientID;
+        this.activeBillSum = activeBillSum;
+    }
+
+    public Appointment(int appointmentID, String price){
+        this.appointmentID = appointmentID;
+        this.price = price;
     }
 
     public int getAppointmentID() {
@@ -67,12 +100,44 @@ public class Appointment {
         this.diagnosis = diagnosis;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getPatientID() {
+        return patientID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setPatientID(int patientID) {
+        this.patientID = patientID;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public float getActiveBillSum() {
+        return activeBillSum;
+    }
+
+    public void setActiveBillSum(float activeBillSum) {
+        this.activeBillSum = activeBillSum;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     @Override
@@ -83,7 +148,11 @@ public class Appointment {
                 ", time='" + time + '\'' +
                 ", treatmentId=" + treatmentId +
                 ", diagnosis='" + diagnosis + '\'' +
-                ", userId=" + userId +
+                ", patientID=" + patientID +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", activeBillSum=" + activeBillSum +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

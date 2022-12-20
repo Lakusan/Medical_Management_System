@@ -27,7 +27,7 @@ public class ProcedureDAOImpl implements ProcedureDAO {
 
         List<Procedure> procedures = new ArrayList<>();
 
-        String sql = "SELECT * FROM procedure INNER JOIN prices ON procedure_id = prices_id";
+        String sql = "SELECT * FROM railway.procedure INNER JOIN prices ON procedure_id = prices_id";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         try {
             ResultSet resultSet = preparedStatement.executeQuery();
