@@ -306,6 +306,8 @@ public class AdminRoomsInfo extends JFrame {
             jTable3.getModel().setValueAt(foundRooms.get(i).isAvailable(), i, 7);
         }
     }
+
+
     // Variables declaration - do not modify
     private javax.swing.JLabel AppIcon;
     private javax.swing.JLabel Appname1;

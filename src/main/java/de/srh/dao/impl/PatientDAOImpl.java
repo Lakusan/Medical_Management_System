@@ -216,6 +216,64 @@ public class PatientDAOImpl implements PatientDAO {
         }
         return result;
     }
-    
+
+    public int addRecordToPatient(Patient patient) throws SQLException{
+        int result1 = -1;
+        int result2 = -1;
+
+        Connection connection = DBManager.getConnection();
+
+        String sql = "INSERT INTO records (date, recorddata) VALUES ((SELECT curdate()), ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, patient.getRecordData());
+
+        String sql2 = "UPDATE patients set records_records_id=(SELECT LAST_INSERT_ID()) WHERE patients_id = ?";
+        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+        preparedStatement2.setInt(1, patient.getId());
+
+        try {
+            result1 = preparedStatement.executeUpdate();
+//            connection.commit();
+            result2 = preparedStatement2.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+
+        }
+        if (result1 != 1 || result2 != 1){
+            return -1;
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closePrepStatement(preparedStatement2);
+        DBManager.closeConnection(connection);
+        return result1;
+    }
+
+    public Patient getPatientRecord(Patient patient) throws SQLException{
+        int result = -1;
+        Patient resutingPatient = null;
+        int record_id = 0;
+        String recordData = "";
+        int patientID = 0;
+        Connection connection = DBManager.getConnection();
+        String sql = "SELECT patients.records_records_id, records.recorddata FROM patients INNER JOIN records ON patients.records_records_id = records.records_id WHERE patients.patients_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, patient.getId());
+        try {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if( resultSet.next()) {
+                record_id = resultSet.getInt("records_records_id");
+                recordData = resultSet.getString("recorddata");
+                resutingPatient = new Patient(patient.getId(), record_id, recordData);
+                DBManager.closeResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closeConnection(connection);
+        return resutingPatient;
+    }
 
 }

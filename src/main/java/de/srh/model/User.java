@@ -49,6 +49,8 @@ public class User {
     private int postalcode;
     private int houseNum;
 
+
+
     public User(String username, String firstname, String lastname, String email, String password, String phoneNum, String title, String streetname, String city, String country, int postalcode, int houseNum) {
         this.username = username;
         this.firstname = firstname;

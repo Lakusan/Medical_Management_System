@@ -5,8 +5,6 @@ import de.srh.model.User;
 import de.srh.service.PasswordService;
 import de.srh.view.admin.AdminHome;
 import de.srh.view.staff.StaffHome;
-import de.srh.view.doctor.DoctorHome;
-import de.srh.view.nurse.NurseHome;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -338,27 +336,15 @@ public class LoginForm extends JFrame {
                 adminHome.setState(java.awt.Frame.NORMAL);
                 adminHome.setVisible(true);
                 break;
-            case "nurse":
-                this.toBack();
-                this.setVisible(false);
-                NurseHome nurseHome = new NurseHome();
-                nurseHome.toFront();
-                nurseHome.setLocationRelativeTo(null);
-                nurseHome.setState(java.awt.Frame.NORMAL);
-                nurseHome.setVisible(true);
-                break;
-            case "doctor":
-                this.toBack();
-                this.setVisible(false);
-                DoctorHome doctorHome = new DoctorHome();
-                doctorHome.toFront();
-                doctorHome.setLocationRelativeTo(null);
-                doctorHome.setState(java.awt.Frame.NORMAL);
-                doctorHome.setVisible(true);
-                break;
             default:
-                javax.swing.JOptionPane.showMessageDialog(this, "You dont have a permission role, contact admin");
-
+                this.toBack();
+                this.setVisible(false);
+                StaffHome staffHome2 = new StaffHome();
+                staffHome2.toFront();
+                staffHome2.setLocationRelativeTo(null);
+                staffHome2.setState(java.awt.Frame.NORMAL);
+                staffHome2.setVisible(true);
+                break;
         }
     }
     /**

@@ -93,7 +93,7 @@ public class StaffHome extends javax.swing.JFrame {
 
             jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
             jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            jLabel6.setText("Doctor's Availability");
+            jLabel6.setText("Manage Appointments");
 
             javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
             jPanel8.setLayout(jPanel8Layout);
@@ -128,7 +128,7 @@ public class StaffHome extends javax.swing.JFrame {
             jPanel7.setPreferredSize(new java.awt.Dimension(300, 219));
 
             jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-            jLabel9.setText("Manage Patients");
+            jLabel9.setText("Manage Records");
             jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
             jLabel9.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -169,7 +169,7 @@ public class StaffHome extends javax.swing.JFrame {
             jPanel6.setPreferredSize(new java.awt.Dimension(322, 219));
 
             jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-            jLabel8.setText("Price Information");
+            jLabel8.setText("Manage Payments");
             jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
             jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -210,7 +210,7 @@ public class StaffHome extends javax.swing.JFrame {
             jPanel2.setPreferredSize(new java.awt.Dimension(300, 219));
 
             jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-            jLabel3.setText("Manage Appointments");
+            jLabel3.setText("Manage Patients");
             jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
             jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -360,7 +360,6 @@ public class StaffHome extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {
         javax.swing.JOptionPane.showMessageDialog(this, "Button 11");
-
         this.toBack();
         this.setVisible(false);
         PatientInfo patientInfo = new PatientInfo();
@@ -375,17 +374,21 @@ public class StaffHome extends javax.swing.JFrame {
 
         this.toBack();
         this.setVisible(false);
-        PatientInfo patientInfo = new PatientInfo();
-        patientInfo.toFront();
-        patientInfo.setVisible(true);
-        patientInfo.setLocationRelativeTo(null);
-        patientInfo.setState(java.awt.Frame.NORMAL);
+        MedicalRecord medicalRecord = new MedicalRecord();
+        medicalRecord.toFront();
+        medicalRecord.setVisible(true);
+        medicalRecord.setLocationRelativeTo(null);
+        medicalRecord.setState(java.awt.Frame.NORMAL);
     }
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Button 14");
-
-
+        this.toBack();
+        this.setVisible(false);
+        ManagePayments managePayments = new ManagePayments();
+        managePayments.toFront();
+        managePayments.setVisible(true);
+        managePayments.setLocationRelativeTo(null);
+        managePayments.setState(java.awt.Frame.NORMAL);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,10 +400,13 @@ public class StaffHome extends javax.swing.JFrame {
     }
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Button 6");
-
-//        Staff_manage_appointments Manageapp=new Staff_manage_appointments();
-//        Manageapp.setVisible(true);
+        this.toBack();
+        this.setVisible(false);
+        PatientInfo patientInfo = new PatientInfo();
+        patientInfo.toFront();
+        patientInfo.setVisible(true);
+        patientInfo.setLocationRelativeTo(null);
+        patientInfo.setState(java.awt.Frame.NORMAL);
     }
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,9 +418,13 @@ public class StaffHome extends javax.swing.JFrame {
 
     private void registerPatentBtnActionPerformed(java.awt.event.ActionEvent evt) {
         javax.swing.JOptionPane.showMessageDialog(this, "Button register Patient");
-
-//        Staff_doc_available docavailability=new Staff_doc_available();
-//        docavailability.setVisible(true);
+        this.toBack();
+        this.setVisible(false);
+        PatientRegistration patientRegistration = new PatientRegistration();
+        patientRegistration.toFront();
+        patientRegistration.setVisible(true);
+        patientRegistration.setLocationRelativeTo(null);
+        patientRegistration.setState(java.awt.Frame.NORMAL);
     }
     /**
      * @param args the command line arguments

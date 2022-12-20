@@ -25,9 +25,25 @@ public class Patient {
     String streetname;
     int postalcode;
     int houseNo;
-
     String paymentMethod;
 
+    private int recordId;
+    private String recordData;
+
+    public Patient(int id, int recordId, String recordData) {
+        this.id = id;
+        this.recordId = recordId;
+        this.recordData = recordData;
+    }
+
+    public Patient(int id, String recordData) {
+        this.id = id;
+        this.recordData = recordData;
+    }
+
+    public Patient(int id) {
+        this.id = id;
+    }
     public Patient(int id, String firstname, String lastname, String title, String phoneNumber, String bloodgroup, String assignedDoctor, String assignedNurse, String currentSymptoms, int insuranceNumber, String insuranceType, String country, String dateOfBirth, String email, String city, String streetname, int postalcode, int houseNo) {
         this.id = id;
         this.firstname = firstname;
@@ -345,6 +361,22 @@ public class Patient {
         this.paymentMethod = paymentMethod;
     }
 
+    public int getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(int recordId) {
+        this.recordId = recordId;
+    }
+
+    public String getRecordData() {
+        return recordData;
+    }
+
+    public void setRecordData(String recordData) {
+        this.recordData = recordData;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -367,6 +399,8 @@ public class Patient {
                 ", postalcode=" + postalcode +
                 ", houseNo=" + houseNo +
                 ", paymentMethod='" + paymentMethod + '\'' +
+                ", recordId=" + recordId +
+                ", recordData='" + recordData + '\'' +
                 '}';
     }
 }
