@@ -63,7 +63,6 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
                 appointments.add(appointment);
 
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -93,6 +92,41 @@ public class AppointmentDAOImpl implements AppointmentDAO {
         }
         DBManager.closePrepStatement(preparedStatement);
         DBManager.closeConnection(connection);
+
+        return result;
+    }
+
+    public int createAppointment(Appointment appointment) throws SQLException{
+        Connection connection = DBManager.getConnection();
+
+        String sql = "UPDATE appointment set date = ? , treatment_treatment_id = ?, diagnosis = ? WHERE appointment_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, appointment.getDate());
+        preparedStatement.setInt(2, appointment.getTreatmentId());
+        preparedStatement.setString(3, appointment.getDiagnosis());
+        preparedStatement.setInt(4, appointment.getAppointmentID());
+
+        String sql2 = "UPDATE patients set appointment_appointment_id = ?, current_symptoms = ? WHERE patients_id = ?";
+        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+        preparedStatement2.setInt(1, appointment.getAppointmentID());
+        preparedStatement2.setString(2, appointment.getDiagnosis());
+        preparedStatement2.setInt(3, appointment.getPatientID());
+
+        int result = -1;
+        try{
+            result = preparedStatement.executeUpdate();
+            result = preparedStatement2.executeUpdate();
+            connection.commit();
+        } catch (SQLIntegrityConstraintViolationException e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+
+        }
+        DBManager.closePrepStatement(preparedStatement);
+        DBManager.closePrepStatement(preparedStatement2);
+        DBManager.closeConnection(connection);
+
 
         return result;
     }

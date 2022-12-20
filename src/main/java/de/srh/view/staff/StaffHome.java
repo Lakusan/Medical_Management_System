@@ -218,11 +218,6 @@ public class StaffHome extends javax.swing.JFrame {
             jButton2.setText("Add");
             jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
             jButton2.setVisible(false);
-            jButton2.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton2ActionPerformed(evt);
-                }
-            });
 
             jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
             jButton6.setText("Manage");
@@ -370,8 +365,6 @@ public class StaffHome extends javax.swing.JFrame {
     }
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Button 10");
-
         this.toBack();
         this.setVisible(false);
         MedicalRecord medicalRecord = new MedicalRecord();
@@ -391,14 +384,6 @@ public class StaffHome extends javax.swing.JFrame {
         managePayments.setState(java.awt.Frame.NORMAL);
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Button 2");
-
-//        Staff_book_appointment bookapp=new Staff_book_appointment();
-//        bookapp.setVisible(true);
-
-    }
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
         this.toBack();
         this.setVisible(false);
@@ -410,14 +395,16 @@ public class StaffHome extends javax.swing.JFrame {
     }
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Button 18");
-
-//        Staff_doc_available docavailability=new Staff_doc_available();
-//        docavailability.setVisible(true);
+        this.toBack();
+        this.setVisible(false);
+        ManageAppointments manageAppointments= new ManageAppointments();
+        manageAppointments.toFront();
+        manageAppointments.setVisible(true);
+        manageAppointments.setLocationRelativeTo(null);
+        manageAppointments.setState(java.awt.Frame.NORMAL);
     }
 
     private void registerPatentBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Button register Patient");
         this.toBack();
         this.setVisible(false);
         PatientRegistration patientRegistration = new PatientRegistration();

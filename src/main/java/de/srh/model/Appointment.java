@@ -25,7 +25,6 @@ public class Appointment {
         this.firstname = firstname;
         this.lastname = lastname;
     }
-
     public Appointment(int appointmentID, String date, String time, int treatmentId, String diagnosis, int patientID, String firstname, String lastname) {
         this.appointmentID = appointmentID;
         this.date = date;
