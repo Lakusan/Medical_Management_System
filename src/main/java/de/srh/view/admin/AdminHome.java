@@ -122,7 +122,8 @@ public class AdminHome extends JFrame {
         Appname1.setText("MediCare Hospital");
         Appname1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
+        AppIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/icon.png"));
+
         AppIcon.setText("jLabel4");
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 

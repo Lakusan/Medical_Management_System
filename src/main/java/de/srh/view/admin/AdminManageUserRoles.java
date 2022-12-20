@@ -41,6 +41,8 @@ public class AdminManageUserRoles extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         AppIcon.setText("jLabel4");
+        AppIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/icon.png"));
+
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 
         Appname1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

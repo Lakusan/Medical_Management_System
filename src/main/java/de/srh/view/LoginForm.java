@@ -166,7 +166,7 @@ public class LoginForm extends JFrame {
         jLabel1.setBackground(new java.awt.Color(51, 255, 51));
         jLabel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
+        AppIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/icon.png"));
         AppIcon.setText("jLabel4");
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 

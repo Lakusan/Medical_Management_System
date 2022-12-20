@@ -41,7 +41,8 @@ public class AdminEmployeeManage extends JFrame {
         };
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        AppIcon.setIcon(new javax.swing.ImageIcon("D:\\Medical management system\\icon.png")); // NOI18N
+        AppIcon.setIcon(new javax.swing.ImageIcon("src/main/resources/icon.png"));
+
         AppIcon.setText("jLabel4");
         AppIcon.setPreferredSize(new java.awt.Dimension(40, 40));
 
