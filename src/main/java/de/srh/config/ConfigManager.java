@@ -1,13 +1,10 @@
 package de.srh.config;
 
-
-import de.srh.service.PasswordService;
-
 import java.util.ArrayList;
 import java.util.Properties;
 
 /**
- * Config parser parses configuration files and matches keys of env variables.
+ * Config parser parses configuration files and matches keys of VM Option variables.
  * Then it puts the values to the corresponding keys
  * static singleton object with parsed configuration is used for DBConnector
  * @author  Andreas Lakus
@@ -16,7 +13,6 @@ import java.util.Properties;
 public class ConfigManager {
 
     private static Properties dBConfigProps;
-    private static PasswordService passwordService;
 
     private ArrayList<String> configProps = null;
     public static void setDBConfigProps(Properties props){

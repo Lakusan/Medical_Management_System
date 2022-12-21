@@ -3,7 +3,6 @@ package de.srh.dao.impl;
 
 import de.srh.config.DBManager;
 import de.srh.dao.ProcedureDAO;
-import de.srh.model.Medication;
 import de.srh.model.Procedure;
 
 import java.sql.Connection;

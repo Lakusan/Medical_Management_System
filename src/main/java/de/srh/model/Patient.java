@@ -1,6 +1,5 @@
 package de.srh.model;
 
-import java.util.Date;
 
 /**
  * @author Andreas Lakus

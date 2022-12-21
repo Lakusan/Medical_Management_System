@@ -4,9 +4,6 @@ package de.srh.dao.impl;
 import de.srh.config.DBManager;
 import de.srh.dao.DAO;
 import de.srh.model.Room;
-import de.srh.model.User;
-import de.srh.service.PasswordService;
-import de.srh.service.ValidationService;
 
 import java.sql.*;
 import java.util.ArrayList;

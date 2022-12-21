@@ -3,9 +3,6 @@ package de.srh.dao.impl;
 import de.srh.config.DBManager;
 import de.srh.dao.MedicationDAO;
 import de.srh.model.Medication;
-import de.srh.model.User;
-
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

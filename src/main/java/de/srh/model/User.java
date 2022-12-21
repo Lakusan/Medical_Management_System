@@ -9,46 +9,18 @@ public class User {
     private String firstname;
     private String lastname;
     private String email;
-
     private String password;
-
     private String phoneNum;
-
     private String title;
-
     private int isActivated;
-
-    public boolean isActivated() {
-        return isActivatedBoolean;
-    }
-
-    public void setActivated(boolean activated) {
-        isActivatedBoolean = activated;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
     boolean isActivatedBoolean;
-
     private String role;
-
     private int employeeId = 0;
-
     private String streetname;
-
     private String city;
-
     private String country;
-
     private int postalcode;
     private int houseNum;
-
 
 
     public User(String username, String firstname, String lastname, String email, String password, String phoneNum, String title, String streetname, String city, String country, int postalcode, int houseNum) {
@@ -246,6 +218,21 @@ public class User {
         this.houseNum = houseNum;
     }
 
+    public boolean isActivated() {
+        return isActivatedBoolean;
+    }
+
+    public void setActivated(boolean activated) {
+        isActivatedBoolean = activated;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
     @Override
     public String toString() {
         return "User{" +

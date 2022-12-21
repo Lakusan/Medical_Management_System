@@ -38,7 +38,7 @@ public class UserDAOImpl implements DAO<User> {
                 String username = resultSet.getString("username");
                 String phoneNum = resultSet.getString("phone_num");
                 String title = resultSet.getString("title");
-                user = new User(oid, username, firstName, lastName, email, password, phoneNum, title );
+                user = new User( oid, username, firstName, lastName, email, password, phoneNum, title );
 
                 DBManager.closeResultSet(resultSet);
             }
@@ -397,7 +397,7 @@ public class UserDAOImpl implements DAO<User> {
         return roleName;
     }
 
-public List<User> getAllUsersWithRoles() throws SQLException{
+    public List<User> getAllUsersWithRoles() throws SQLException{
         Connection connection = DBManager.getConnection();
 
         List<User> allUsers = new ArrayList<>();

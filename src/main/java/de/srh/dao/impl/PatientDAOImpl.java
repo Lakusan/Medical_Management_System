@@ -2,15 +2,9 @@ package de.srh.dao.impl;
 
 import de.srh.config.DBManager;
 import de.srh.dao.PatientDAO;
-import de.srh.model.Appointment;
 import de.srh.model.Patient;
-import de.srh.model.User;
-import de.srh.service.PasswordService;
-import de.srh.service.ValidationService;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 /**
